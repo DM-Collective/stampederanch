@@ -1,0 +1,46 @@
+/* Self-hosted webfonts — Fraunces (display) + Work Sans (body).
+   Self-hosting avoids a third-party request to Google on every page load:
+   faster LCP, and no visitor data leaving the ranch's own domain.
+   Carry these same files into the WordPress build rather than enqueuing
+   Google Fonts. */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/fraunces-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/fraunces-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/fraunces-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/fraunces-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/work-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url("../fonts/work-sans-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/work-sans-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/work-sans-latin-700-normal.woff2") format("woff2");
+}
