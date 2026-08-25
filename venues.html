@@ -399,6 +399,11 @@
           <label for="v-notes">Tell us about the event</label>
           <textarea id="v-notes" name="notes"></textarea>
         </div>
+        <div class="check">
+          <input id="v-terms" name="terms" type="checkbox" required>
+          <label for="v-terms">Please read the <a href="terms.html" data-terms-open>Venue Booking Terms &amp;
+            Conditions</a> before you continue. I confirm I have read and agree to them.</label>
+        </div>
         <p class="form__note">By submitting you agree to be contacted about your inquiry. Prototype only — nothing is stored or sent.</p>
         <p><button class="btn btn--ink" type="submit">Send Inquiry</button></p>
         <p class="form-status" role="status" tabindex="-1" data-form-status hidden></p>
@@ -455,6 +460,7 @@
         <li><a href="contact.html">Request Availability</a></li>
         <li><a href="weddings.html">Full Ranch Buyouts</a></li>
         <li><a href="contact.html#faq">FAQs</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -473,6 +479,37 @@
     <span>Design &amp; Development by Digital Marketing Collective</span>
   </div>
 </footer>
+</div>
+
+<!-- ============================ TERMS SHEET ============================ -->
+<div class="sheet" id="terms-sheet" data-open="false" aria-hidden="true">
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="terms-sheet-title" tabindex="-1">
+    <div class="sheet__head">
+      <h2 id="terms-sheet-title">Venue Booking Terms &amp; Conditions</h2>
+      <button class="sheet__close" type="button" data-sheet-close>
+        <span aria-hidden="true">&times;</span><span class="visually-hidden">Close terms</span>
+      </button>
+    </div>
+    <div class="sheet__body" tabindex="0">
+      <div class="legal">
+        <p class="legal__intro">By reserving or entering the premises of Stampede Ranch, the Client, its guests, and vendors agree to the following binding terms:</p>
+        <h2>1. ASSUMPTION OF RISK &amp; OCCUPIERS' LIABILITY</h2>
+        <p>Stampede Ranch is situated on rural property containing indoor, outdoor, agricultural, and rustic structures. The Client and its guests voluntarily enter the premises and assume all risks associated with rural terrain, weather exposure, uneven surfaces, and natural hazards. Stampede Ranch operates in full compliance with applicable provincial Occupiers' Liability legislation. Stampede Ranch, its owners, officers, and staff shall not be liable for personal injury, property damage, or loss incurred on the premises except where directly caused by the gross negligence or willful misconduct of Stampede Ranch.</p>
+        <h2>2. HIGH-RISK ACTIVITIES, LIVESTOCK, &amp; RODEO DISCLAIMER</h2>
+        <p>Events involving equestrian activities, rodeos, livestock demonstrations, or interactions with animals inherently involve risk of physical injury, property damage, or death. Stampede Ranch enforces strict safety protocols; however, all attendees, participants, vendors, and spectators participate in or observe such activities at their own risk. Stampede Ranch explicitly disclaims liability for animal behavior or injuries arising from unauthorized interaction with livestock or access to restricted venue areas.</p>
+        <h2>3. LIQUOR COMPLIANCE &amp; INDEMNIFICATION</h2>
+        <p>The Client agrees to comply fully with all applicable provincial liquor laws, including securing necessary Special Event Permits and ensuring servers hold required provincial certifications. Stampede Ranch reserves the right to terminate alcohol service or require the removal of any guest exhibiting unsafe, unlawful, or excessively intoxicated behavior. The Client agrees to indemnify and hold harmless Stampede Ranch from any liability, fines, claims, or damages arising from alcohol consumption, guest intoxication, or non-compliance with provincial liquor regulations during the event.</p>
+        <h2>4. FORCE MAJEURE &amp; EXTREME WEATHER</h2>
+        <p>Stampede Ranch shall not be held liable or responsible for failure to perform its contractual obligations if such failure arises from acts of God, extreme weather events (including severe storms, blizzards, wildfire smoke, or heat warnings), fire, flood, power outages, municipal infrastructure failure, strikes, labor disputes, epidemics, or government restrictions beyond reasonable control. In such events, Stampede Ranch will work with the Client in good faith to reschedule the event subject to availability, but shall not be responsible for consequential or indirect losses.</p>
+        <h2>5. REQUIRED VENDOR INSURANCE</h2>
+        <p>All third-party vendors engaged by the Client (including caterers, decorators, entertainment, and equipment suppliers) must be approved by Stampede Ranch prior to the event. The Client must ensure that all external vendors provide a valid Certificate of Insurance (COI) demonstrating Commercial General Liability coverage of no less than $2,000,000 CAD per occurrence, naming &ldquo;Stampede Ranch&rdquo; as an Additional Insured, no later than 14 days prior to the event date.</p>
+      </div>
+    </div>
+    <div class="sheet__foot">
+      <a href="terms.html" target="_blank" rel="noopener">Open as a full page &#8599;</a>
+      <button class="btn btn--ink" type="button" data-sheet-accept>I have read and agree</button>
+    </div>
+  </div>
 </div>
 
 <script src="assets/js/main.js" defer></script>
