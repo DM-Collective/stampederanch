@@ -115,15 +115,18 @@
   </section>
 
   <!-- ============================ FULL RANCH RENTAL ============================ -->
-  <section class="section section--ink" id="full-ranch">
-    <div class="wrap split">
-      <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/official-ranch-buildings-1280.webp 1280w, assets/img/official-ranch-buildings-1920.webp 1920w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/official-ranch-buildings-1280.jpg" alt="The Stampede Ranch buildings across open pasture, rail fence in the foreground and foothills beyond" loading="lazy" width="1280" height="960">
-        </picture>
-      </div>
-      <div data-reveal data-reveal-delay="120">
+  <!-- full-bleed scene fading into this section's own colour; the stats bar above
+       is a separate section and keeps its solid background -->
+  <section class="section section--ink section--immersive" id="full-ranch">
+    <div class="immersive__media">
+      <picture>
+        <source type="image/webp" srcset="assets/img/official-ranch-cabin-640.webp 640w, assets/img/official-ranch-cabin-1280.webp 1280w, assets/img/official-ranch-cabin-1920.webp 1920w" sizes="100vw">
+        <img src="assets/img/official-ranch-cabin-1280.jpg" alt="The timber ranch lodge across open pasture, rail fence in the foreground and the snow-capped Rockies beyond" loading="lazy" width="1280" height="961">
+      </picture>
+    </div>
+    <div class="immersive__veil" aria-hidden="true"></div>
+    <div class="wrap immersive__inner">
+      <div class="immersive__content" data-reveal data-reveal-delay="120">
         <p class="eyebrow eyebrow--gold">The Premier Experience</p>
         <h2>The Ranch, Exclusively Yours</h2>
         <p class="lead">For extraordinary occasions that deserve complete privacy, reserve Stampede Ranch as your own
