@@ -368,16 +368,17 @@
     </div>
   </section>
 
-  <!-- INTERIOR RENDERING -->
-  <section class="section section--dark" id="events">
-    <div class="wrap split">
-      <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/render-event-barn-interior-640.webp 640w, assets/img/render-event-barn-interior-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/render-event-barn-interior-1280.jpg" alt="Architectural rendering of the Event Venue set for a seated dinner beneath exposed trusses" loading="lazy" width="1280" height="705">
-        </picture>
-      </div>
-      <div data-reveal data-reveal-delay="120">
+  <!-- INTERIOR RENDERING — full-bleed scene fading into the section colour -->
+  <section class="section section--dark section--immersive" id="events">
+    <div class="immersive__media">
+      <picture>
+        <source type="image/webp" srcset="assets/img/render-event-barn-interior-640.webp 640w, assets/img/render-event-barn-interior-1280.webp 1280w, assets/img/render-event-barn-interior-1920.webp 1920w" sizes="100vw">
+        <img src="assets/img/render-event-barn-interior-1280.jpg" alt="Architectural rendering of the Event Venue set for a seated dinner beneath exposed trusses" loading="lazy" width="1280" height="705">
+      </picture>
+    </div>
+    <div class="immersive__veil" aria-hidden="true"></div>
+    <div class="wrap immersive__inner">
+      <div class="immersive__content" data-reveal data-reveal-delay="120">
         <p class="eyebrow">Events</p>
         <h2>Corporate, Private &amp; Everything Between</h2>
         <p class="lead">Two hundred people for a company kickoff. Twelve around a table for a board offsite. A ranch

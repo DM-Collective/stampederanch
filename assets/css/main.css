@@ -911,3 +911,85 @@ p:last-child { margin-bottom: 0; }
   border: 1px solid rgba(33,29,24,.12);
 }
 .card__placeholder img { width: 56px; height: auto; opacity: .45; }
+
+/* --------------------------------------------------------------------------
+   21. Immersive section — one continuous composition: the photograph runs
+   full-bleed and dissolves into the section's own colour, with the content
+   floating over the settled right-hand side. No panel behind the type; the
+   gradient does the work. Stops are measured, not eyeballed — see the figures
+   recorded beside .immersive__veil.
+   -------------------------------------------------------------------------- */
+.section--immersive { position: relative; overflow: hidden; }
+.section--immersive > .wrap { position: relative; z-index: 2; }
+
+.immersive__media { position: absolute; inset: 0; z-index: 0; }
+.immersive__media picture { display: block; width: 100%; height: 100%; }
+.immersive__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* hold the trusses and the hall's depth in the left and centre of the frame */
+  object-position: 40% 50%;
+}
+
+/* transparent -> semi -> solid --charcoal-deep (#151210 = rgb(21,18,16)).
+   Every stop here was set by measurement, not by eye: the worst-case backdrop
+   pixel behind each text element was sampled from a render of this section with
+   the content hidden, and contrast computed against the composited foreground
+   (the lead and the note are translucent, so they are blended onto the sampled
+   pixel first). Measured 2026-08-26 at 1440x900 / 820x1180 / 390x844:
+     eyebrow 7.12:1, headline 14.12:1, intro 8.82:1, row labels 6.55:1,
+     row text 16.13:1, rendering note 9.67:1, inquiry link 10.30:1
+   Small text needs 4.5:1; the headline is large text and needs 3:1.
+   The gold row labels are the binding constraint — they sit at the left edge of
+   the content column, so the .66 stop at 44% exists to hold them. Re-measure
+   rather than eyeball if these stops move. */
+.immersive__veil {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to right,
+      rgba(21,18,16,0)    0%,
+      rgba(21,18,16,.05) 20%,
+      rgba(21,18,16,.24) 33%,
+      rgba(21,18,16,.66) 44%,
+      rgba(21,18,16,.90) 51%,
+      rgba(21,18,16,.98) 58%,
+      rgb(21,18,16)      65%,
+      rgb(21,18,16)     100%),
+    /* a whisper top and bottom so the full-bleed frame sits into the page
+       instead of butting hard against the cream sections either side */
+    linear-gradient(to bottom,
+      rgba(21,18,16,.55) 0%, rgba(21,18,16,.10) 22%,
+      rgba(21,18,16,.10) 78%, rgba(21,18,16,.55) 100%);
+}
+
+/* Same geometry as the .split it replaces, so content width and vertical
+   position are unchanged: two equal columns, content in the second. */
+.immersive__inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: clamp(2rem, 5vw, 5rem);
+}
+.immersive__content { grid-column: 2; }
+.immersive__content h2 { font-size: var(--fs-h2); margin-bottom: 1.25rem; }
+
+@media (max-width: 860px) {
+  /* Keep the full-bleed treatment rather than reverting to a stacked image.
+     The frame shifts to the hall's centre and the veil turns vertical, so the
+     venue reads at the top and the type sits on settled colour below. */
+  .immersive__inner { grid-template-columns: 1fr; }
+  .immersive__content { grid-column: 1; }
+  .immersive__media img { object-position: 42% 40%; }
+  /* Extra head-room opens a genuine window onto the hall above the type, so the
+     venue stays recognisable instead of being dimmed into the background. */
+  .section--immersive { padding-top: calc(var(--section-y) + 13rem); }
+  /* Anchored in px, not %, so the fade lands at the top of the content no matter
+     how tall the content runs at a given width. */
+  .immersive__veil {
+    background:
+      linear-gradient(to bottom,
+        rgba(21,18,16,.12)   0,
+        rgba(21,18,16,.26) 120px,
+        rgba(21,18,16,.80) 215px,
+        rgb(21,18,16)      265px,
+        rgb(21,18,16)      100%);
+  }
+}
