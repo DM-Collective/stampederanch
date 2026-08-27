@@ -107,6 +107,10 @@
            <source> inside <video>, so the resolution swap has to happen in JS.
            H.264 MP4 — VP9/WebM was trialled and came out no smaller on this
            high-motion aerial footage, so it isn't worth the extra asset. -->
+      <!-- TODO: official hero asset goes here. Replace the two sources and the poster with official
+           Stampede Ranch footage when supplied — brighter than this placeholder cut, full-width,
+           cinematic, landscape-led. Keep the poster fallback, the reduced-motion handling and the
+           1280/1920 source swap in assets/js/main.js. -->
       <video data-hero-video autoplay muted loop playsinline preload="metadata"
              poster="assets/video/hero-poster.jpg"
              aria-label="Aerial footage of the Stampede Ranch in autumn, following the river through the Alberta foothills">
@@ -158,18 +162,18 @@
       </div>
 
       <div class="grid grid--4">
-        <a class="card" href="venues.html" data-reveal>
+        <a class="card" href="venues.html#full-ranch" data-reveal>
           <div class="card__media">
             <picture>
-              <source type="image/webp" srcset="assets/img/render-event-barn-640.webp 640w, assets/img/render-event-barn-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
-              <img src="assets/img/render-event-barn-1280.jpg" alt="Architectural rendering of the new Event Barn at the Stampede Ranch, with silo and stone entry" loading="lazy" width="1280" height="705">
+              <source type="image/webp" srcset="assets/img/official-ranch-buildings-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
+              <img src="assets/img/official-ranch-buildings-1280.jpg" alt="The Stampede Ranch buildings across open pasture with the foothills beyond" loading="lazy" width="1280" height="960">
             </picture>
-            <span class="card__tag">Stay &amp; Venues</span>
+            <span class="card__tag">The Premier Experience</span>
           </div>
           <div class="card__body">
-            <h3>Architectural Enclaves &amp; Grounds</h3>
-            <p>Explore timber-framed event spaces, private hearths, and expansive foothill views built for monumental celebrations.</p>
-            <p class="card__more">Explore venues →</p>
+            <h3>Full Ranch Rental</h3>
+            <p>Complete private access to Stampede Ranch — the grounds, the gathering spaces and qualifying amenities, held for your group alone.</p>
+            <p class="card__more">Explore the ranch →</p>
           </div>
         </a>
 
@@ -182,24 +186,24 @@
             <span class="card__tag">Weddings</span>
           </div>
           <div class="card__body">
-            <h3>Exclusive Estate Takeovers</h3>
-            <p>Command all 135 years of heritage. Reserve the entire ranch estate exclusively for an unforgettable multi-day celebration.</p>
-            <p class="card__more">Plan a wedding →</p>
+            <h3>Weddings &amp; Celebrations</h3>
+            <p>An exclusive Western destination for the whole occasion — a private estate for a multi-day celebration, not a room on a list.</p>
+            <p class="card__more">Plan your wedding →</p>
           </div>
         </a>
 
-        <a class="card" href="#shop" data-reveal data-reveal-delay="180">
+        <a class="card" href="venues.html#venues" data-reveal data-reveal-delay="180">
           <div class="card__media">
             <picture>
-              <source type="image/webp" srcset="assets/img/bronc-sculpture-alt-640.webp 640w, assets/img/bronc-sculpture-alt-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
-              <img src="assets/img/bronc-sculpture-alt-1280.jpg" alt="Metal sculpture of the Stampede Ranch bucking-horse mark mounted on a brick wall" loading="lazy" width="1280" height="2276">
+              <source type="image/webp" srcset="assets/img/render-event-barn-interior-640.webp 640w, assets/img/render-event-barn-interior-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
+              <img src="assets/img/render-event-barn-interior-1280.jpg" alt="Architectural rendering of the Event Venue set for a seated dinner" loading="lazy" width="1280" height="705">
             </picture>
-            <span class="card__tag">The Shop</span>
+            <span class="card__tag">Corporate &amp; Private</span>
           </div>
           <div class="card__body">
-            <h3>The Mercantile</h3>
-            <p>Curated leathercraft, custom apparel, and artisan ranch goods bearing the iconic Stampede brand.</p>
-            <p class="card__more">Coming soon →</p>
+            <h3>Corporate &amp; Private Events</h3>
+            <p>Executive retreats, gatherings, milestone celebrations and hosted Western experiences, arranged with the ranch team.</p>
+            <p class="card__more">Explore experiences →</p>
           </div>
         </a>
 
@@ -262,8 +266,56 @@
     </div>
   </section>
 
-  <!-- ============================ RENDERINGS SPLIT ============================ -->
+  <!-- ============================ FULL RANCH RENTAL ============================ -->
+  <section class="section section--ink">
+    <div class="wrap split">
+      <div class="split__media" data-reveal>
+        <picture>
+          <source type="image/webp" srcset="assets/img/official-ranch-rockies-1280.webp 1280w, assets/img/official-ranch-rockies-1920.webp 1920w" sizes="(max-width: 860px) 92vw, 46vw">
+          <img src="assets/img/official-ranch-rockies-1280.jpg" alt="Ranch pasture and rail fence running west to the snow-capped Rocky Mountains" loading="lazy" width="1280" height="960">
+        </picture>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <p class="eyebrow eyebrow--gold">The Premier Experience</p>
+        <h2>The Ranch, Exclusively Yours</h2>
+        <p class="lead">For extraordinary occasions that deserve complete privacy, reserve Stampede Ranch as your own
+          private Western estate.</p>
+        <p>Full ranch rentals provide exclusive access to the property's primary gathering spaces, grounds, and
+          qualifying amenities, allowing the ranch team to create a completely tailored experience for your group.</p>
+        <ul class="facts">
+          <li><b>Suitable for</b><span>Destination weddings, executive retreats, corporate gatherings, milestone
+            celebrations, private multi-day events and curated Western experiences.</span></li>
+          <li><b>Exclusivity</b><span>The property is held for one group at a time.</span></li>
+        </ul>
+        <p style="margin-top:2rem"><a class="btn btn--gold" href="venues.html#full-ranch">Explore the Full Ranch Rental</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE EVENT VENUE ============================ -->
   <section class="section">
+    <div class="wrap split split--flip">
+      <div class="split__media" data-reveal>
+        <picture>
+          <source type="image/webp" srcset="assets/img/render-event-barn-interior-1280.webp 1280w, assets/img/render-event-barn-interior-1920.webp 1920w" sizes="(max-width: 860px) 92vw, 46vw">
+          <img src="assets/img/render-event-barn-interior-1280.jpg" alt="Architectural rendering of the Event Venue set for a seated dinner beneath exposed trusses" loading="lazy" width="1280" height="705">
+        </picture>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <p class="eyebrow">Coming to the Ranch</p>
+        <h2>The Event Venue</h2>
+        <p class="lead">Soaring vaulted roofs, grand wrought-iron accents and expansive seating beneath exposed
+          trusses — designed by Bennett Partners for weddings, corporate events, galas and significant private
+          gatherings, and held exclusively for your group.</p>
+        <p class="note-flag">Architectural Rendering &middot; Coming Soon. Currently in development — not yet
+          available for use.</p>
+        <p style="margin-top:2rem"><a class="btn btn--outline-ink" href="venues.html#event-venue">Explore the Event Venue</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE LODGE ============================ -->
+  <section class="section section--cream">
     <div class="wrap split">
       <div class="split__media" data-reveal>
         <picture>
@@ -273,16 +325,14 @@
       </div>
       <div data-reveal data-reveal-delay="120">
         <p class="eyebrow">Coming to the Ranch</p>
-        <h2>The Lodge &amp; Event Barn</h2>
-        <p class="lead">Designed by Bennett Partners, the architectural vision marries rugged alpine timber with warm
-          interior stonework. Anchored by soaring exposed trusses and towering stone hearths, the Lodge and Event Barn
-          offer an intimate yet majestic backdrop for high-end galas, weddings, and corporate retreats.</p>
-        <ul class="facts">
-          <li><b>The Event Barn</b><span>Soaring vaulted roofs, grand wrought-iron accents, and expansive seating for premier galas and ceremonies.</span></li>
-          <li><b>The Lodge</b><span>An architectural haven of timber and stone, featuring cozy hearth fires, curated spirits, and breathtaking wraparound mountain decks.</span></li>
-          <li><b>The Grounds</b><span>Manicured pond edges, covered stone walkways, and pristine open range framed by the Canadian Rockies.</span></li>
-        </ul>
-        <p style="margin-top:2rem"><a class="link-arrow" href="venues.html">See every venue →</a></p>
+        <h2>The Lodge</h2>
+        <p class="lead">An architectural haven of timber and stone — cozy hearth fires, curated spirits and
+          breathtaking wraparound mountain decks, with manicured pond edges and covered stone walkways beyond.</p>
+        <p>The Lodge is offered as an exclusive-use property, reserved in its entirety rather than room by room, for
+          private groups, executive retreats, wedding parties and multi-day gatherings.</p>
+        <p class="note-flag">Architectural Rendering &middot; Coming Soon. Currently in development — not yet
+          available for use.</p>
+        <p style="margin-top:2rem"><a class="btn btn--outline-ink" href="venues.html#lodge">Explore the Lodge</a></p>
       </div>
     </div>
   </section>
@@ -336,7 +386,8 @@
         <h2>Official Ranch Goods</h2>
         <p class="lead">Wear the legacy. Hand-selected Western apparel, custom leather goods, and heirloom keepsakes
           emblazoned with the historic Stampede Ranch mark. The online Mercantile launches with Phase&nbsp;2.</p>
-        <p><a class="btn btn--outline-ink" href="contact.html">Tell me when the shop opens</a></p>
+        <p class="note-flag">Coming Soon — the Mercantile opens with Phase&nbsp;2.</p>
+        <p style="margin-top:1.5rem"><a class="btn btn--outline-ink" href="contact.html">Tell me when the shop opens</a></p>
       </div>
     </div>
   </section>
@@ -357,7 +408,7 @@
         to your vision.</p>
       <div class="hero__actions">
         <a class="btn btn--gold" href="contact.html">Request Availability</a>
-        <a class="btn btn--ghost" href="weddings.html">Explore Estate Buyouts</a>
+        <a class="btn btn--ghost" href="weddings.html">Explore Full Ranch Rentals</a>
       </div>
     </div>
   </section>
@@ -392,7 +443,7 @@
       <h3>Plan Your Visit</h3>
       <ul>
         <li><a href="contact.html">Request Availability</a></li>
-        <li><a href="weddings.html">Full Ranch Buyouts</a></li>
+        <li><a href="weddings.html">Full Ranch Rental</a></li>
         <li><a href="contact.html#faq">FAQs</a></li>
         <li><a href="terms.html">Terms &amp; Conditions</a></li>
         <li><a href="contact.html">Contact</a></li>

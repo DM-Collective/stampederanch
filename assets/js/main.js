@@ -134,6 +134,83 @@
   });
 
   /* ---------------------------------------------------------------
+     Terms sheet — opened from the booking form's consent checkbox.
+     The trigger is a real link to terms.html, so with JS off (or if
+     this fails) the terms are still reachable as a page.
+     --------------------------------------------------------------- */
+  var sheet = document.getElementById('terms-sheet');
+
+  if (sheet) {
+    var panel = sheet.querySelector('.sheet__panel');
+    var sheetReturn = null;
+    var FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    var sheetOpen = function () { return sheet.getAttribute('data-open') === 'true'; };
+
+    var setSheet = function (open) {
+      sheet.setAttribute('data-open', open ? 'true' : 'false');
+      sheet.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        sheetReturn = document.activeElement;
+        if (panel) { panel.scrollTop = 0; panel.focus(); }
+        var body = sheet.querySelector('.sheet__body');
+        if (body) body.scrollTop = 0;
+      } else if (sheetReturn && sheetReturn.focus) {
+        sheetReturn.focus();
+        sheetReturn = null;
+      }
+    };
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-terms-open]'), function (link) {
+      link.addEventListener('click', function (e) {
+        // Stop the label from toggling the checkbox on the way through.
+        e.preventDefault();
+        e.stopPropagation();
+        setSheet(true);
+      });
+    });
+
+    Array.prototype.forEach.call(sheet.querySelectorAll('[data-sheet-close]'), function (b) {
+      b.addEventListener('click', function () { setSheet(false); });
+    });
+
+    // Click the backdrop, not the panel.
+    sheet.addEventListener('click', function (e) {
+      if (e.target === sheet) setSheet(false);
+    });
+
+    var accept = sheet.querySelector('[data-sheet-accept]');
+    if (accept) {
+      accept.addEventListener('click', function () {
+        var box = document.getElementById('v-terms');
+        if (box) {
+          box.checked = true;
+          if (typeof Event === 'function') { box.dispatchEvent(new Event('change', { bubbles: true })); }
+          sheetReturn = box;
+        }
+        setSheet(false);
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!sheetOpen()) return;
+      if (e.key === 'Escape') { setSheet(false); return; }
+      if (e.key !== 'Tab') return;
+      var items = Array.prototype.slice.call(sheet.querySelectorAll(FOCUSABLE))
+        .filter(function (el) { return el.offsetParent !== null; });
+      if (!items.length) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === panel)) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------------
      Current year in footers
      --------------------------------------------------------------- */
   Array.prototype.forEach.call(document.querySelectorAll('[data-year]'), function (el) {

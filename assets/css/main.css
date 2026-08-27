@@ -643,7 +643,7 @@ p:last-child { margin-bottom: 0; }
 
 /* Print */
 @media print {
-  .rail, .topbar, .menu, .hero__media, .video-toggle { display: none !important; }
+  .rail, .topbar, .menu, .sheet, .hero__media, .video-toggle { display: none !important; }
   body { background: #fff; color: #000; }
 }
 
@@ -747,4 +747,143 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 560px) {
   .hero__opening { margin-bottom: 1.75rem; }
   .hero__opening::before { width: 30px; }
+}
+
+/* --------------------------------------------------------------------------
+   19. Legal pages, consent checkbox, terms sheet
+   -------------------------------------------------------------------------- */
+.legal-head h1 { font-size: var(--fs-h2); margin: .5rem 0 1.25rem; max-width: 24ch; }
+.legal-head .lead { color: rgba(244,239,228,.8); max-width: 60ch; }
+
+.legal { max-width: 68ch; }
+.legal__intro { font-size: var(--fs-lead); line-height: 1.6; }
+.legal h2 {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--rust-text);
+  margin: 2.75rem 0 .85rem;
+}
+.legal h2:first-child { margin-top: 0; }
+.legal p { margin: 0 0 1rem; }
+.legal__meta {
+  margin-top: 2.75rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-micro); color: var(--ink-soft);
+}
+
+/* Consent checkbox */
+.check { display: grid; grid-template-columns: auto 1fr; gap: .8rem; align-items: start; }
+.check input[type="checkbox"] {
+  width: 1.15rem; height: 1.15rem; margin: .15rem 0 0;
+  accent-color: var(--rust);
+}
+.check input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--rust); outline-offset: 2px;
+}
+.check label {
+  font-size: var(--fs-small); line-height: 1.6; color: var(--ink);
+  letter-spacing: normal; text-transform: none; font-weight: 400;
+}
+.check a { color: var(--rust-text); text-underline-offset: 3px; }
+
+/* Terms sheet (modal) */
+.sheet {
+  position: fixed; inset: 0; z-index: 70;
+  /* minmax(0,1fr) pins the row to the viewport; without it the track sizes to
+     the panel's full content height and centring pushes the footer off-screen */
+  display: grid; grid-template-rows: minmax(0, 1fr); place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(21,18,16,.74);
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s var(--ease), visibility 0s linear .3s;
+}
+.sheet[data-open="true"] {
+  opacity: 1; visibility: visible;
+  transition: opacity .3s var(--ease), visibility 0s linear 0s;
+}
+.sheet__panel {
+  width: min(60rem, 100%);
+  max-height: min(84svh, 100%);
+  display: flex; flex-direction: column;
+  background: var(--white); color: var(--ink);
+  box-shadow: 0 24px 64px rgba(0,0,0,.45);
+}
+.sheet__head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--rule);
+}
+.sheet__head h2 { font-size: var(--fs-h3); margin: 0; }
+.sheet__close {
+  flex: none; width: 2.75rem; height: 2.75rem;
+  display: grid; place-content: center;
+  font: inherit; font-size: 1.5rem; line-height: 1;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--rule); cursor: pointer;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.sheet__close:hover { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+/* flex-1 + min-height:0 is what lets the body scroll instead of pushing
+   the footer out of the panel */
+.sheet__body {
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+.sheet__head, .sheet__foot { flex: none; }
+.sheet__foot {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center; justify-content: space-between;
+  padding: clamp(1rem, 2.5vw, 1.5rem) clamp(1.25rem, 3vw, 2rem);
+  border-top: 1px solid var(--rule);
+  background: var(--cream-deep);
+}
+.sheet__foot a { font-size: var(--fs-small); color: var(--rust-text); }
+
+@media (max-width: 560px) {
+  .sheet { padding: 0; }
+  .sheet__panel { max-height: 100svh; height: 100svh; }
+  .sheet__foot { justify-content: stretch; }
+  .sheet__foot .btn { width: 100%; text-align: center; }
+}
+
+/* --------------------------------------------------------------------------
+   20. Status flags & wide fact lists
+   NOTE FOR LEGAL REVIEW: the booking-disclosure copy carried in .form__note
+   on venues.html / weddings.html / contact.html, and the notices on
+   terms.html, are website disclosure copy pending review by the ranch's
+   legal counsel. They do not replace the rental agreement.
+   -------------------------------------------------------------------------- */
+.note-flag {
+  display: inline-block; text-align: left;
+  margin-top: 1.25rem;
+  padding: .7rem 1rem;
+  font-size: var(--fs-micro); line-height: 1.55;
+  color: var(--ink-soft);
+  background: rgba(201,162,39,.12);
+  border: 1px solid rgba(201,162,39,.42);
+}
+.section--ink .note-flag, .section--dark .note-flag {
+  color: rgba(244,239,228,.82);
+  background: rgba(201,162,39,.16);
+  border-color: rgba(201,162,39,.5);
+}
+
+.facts--wide { max-width: 72ch; gap: 1.25rem; }
+.facts--wide li { grid-template-columns: 13rem 1fr; }
+.facts--wide em { font-style: normal; color: var(--rust-text); }
+.section--ink .facts--wide em, .section--dark .facts--wide em { color: var(--gold-light); }
+@media (max-width: 640px) {
+  .facts li, .facts--wide li { grid-template-columns: 1fr; gap: .35rem; }
+}
+
+/* Amenity figure (official ranch photography) */
+.amenity-figure { margin: 0 0 2.5rem; max-width: 40rem; }
+.amenity-figure img { width: 100%; height: auto; }
+.amenity-figure figcaption {
+  margin-top: .85rem; font-size: var(--fs-micro); color: var(--ink-soft);
+  letter-spacing: .02em;
 }
