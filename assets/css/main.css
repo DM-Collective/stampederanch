@@ -311,15 +311,26 @@ p:last-child { margin-bottom: 0; }
 .hero__media video, .hero__media img {
   width: 100%; height: 100%; object-fit: cover;
 }
+/* The scrim earns its keep only where type sits: a pool across the bottom-left
+   text block, and as little as possible over the landscape.
+   These stops are the result of measuring WCAG contrast for every hero text
+   element against the lightest backdrop pixel behind it, sampled across three
+   frames of the moving footage at 1440x900 and 390x844. Measured 2026-08-26:
+   eyebrow 4.92:1, H1 6.04:1, subhead 11.98:1, opening 9.53:1, scroll 15.12:1,
+   reel note 6.03:1 (small text needs 4.5:1; the H1 is large text, needs 3:1).
+   The eyebrow is the binding constraint — the .52 stop at 68% exists solely to
+   hold it, so re-measure rather than eyeball if you loosen anything here. */
 .hero__scrim {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(21,18,16,.92) 0%, rgba(21,18,16,.55) 40%, rgba(21,18,16,.22) 68%, rgba(21,18,16,.5) 100%),
-    linear-gradient(to right, rgba(21,18,16,.72) 0%, rgba(21,18,16,.25) 45%, rgba(21,18,16,0) 72%);
+    linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.58) 38%, rgba(21,18,16,.40) 60%, rgba(21,18,16,.52) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
+    linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
+    radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
 }
 
 .hero__inner { position: relative; z-index: 2; width: 100%; max-width: 62rem; }
-.hero__inner .eyebrow { color: var(--gold); }
+/* gold-light, not gold: 11px type over moving footage needs the extra luminance */
+.hero__inner .eyebrow { color: var(--gold-light); }
 .hero h1 { color: var(--white); margin-bottom: .5rem; }
 .hero__sub { color: rgba(255,255,255,.9); margin: 1.25rem 0 2rem; max-width: 44ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .9rem; }
@@ -598,6 +609,15 @@ p:last-child { margin-bottom: 0; }
   .menu { padding-left: var(--gutter); grid-template-columns: 1fr; align-content: start;
           padding-top: 6rem; gap: 2rem; overflow-y: auto; }
   .hero { min-height: 88svh; padding-bottom: 3rem; }
+  /* On narrow screens the text block starts higher in the frame, so the pool has
+     to reach further up. Measured at 390x844. */
+  .hero__scrim {
+    background:
+      linear-gradient(to top,
+        rgba(21,18,16,.92) 0%, rgba(21,18,16,.86) 52%, rgba(21,18,16,.70) 74%,
+        rgba(21,18,16,.20) 86%, rgba(21,18,16,.10) 100%),
+      linear-gradient(to right, rgba(21,18,16,.40) 0%, rgba(21,18,16,.20) 60%, rgba(21,18,16,.08) 100%);
+  }
   .hero__note { display: none; }
   .split, .split--flip .split__media { grid-template-columns: 1fr; order: 0; }
   .strip { grid-template-columns: 1fr; }
