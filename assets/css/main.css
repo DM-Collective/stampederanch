@@ -289,6 +289,8 @@ p:last-child { margin-bottom: 0; }
 
 .section-head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .section-head h2 { font-size: var(--fs-h2); }
+/* h2 has no bottom margin globally, so a lead directly beneath it was touching */
+.section-head > h2 + p { margin-top: 1.15rem; }
 .section--dark .eyebrow, .section--ink .eyebrow, .section--sage .eyebrow { color: var(--gold); }
 .section--dark .lead, .section--ink .lead, .section--sage .lead { color: rgba(244,239,228,.78); }
 
@@ -880,10 +882,12 @@ p:last-child { margin-bottom: 0; }
   .facts li, .facts--wide li { grid-template-columns: 1fr; gap: .35rem; }
 }
 
-/* Amenity figure (official ranch photography) */
-.amenity-figure { margin: 0 0 2.5rem; max-width: 40rem; }
-.amenity-figure img { width: 100%; height: auto; }
-.amenity-figure figcaption {
-  margin-top: .85rem; font-size: var(--fs-micro); color: var(--ink-soft);
-  letter-spacing: .02em;
+/* Coming-soon card panel — used where no official photography exists yet, so a
+   real facility is never implied by a stand-in photograph. */
+.card__media--soon { background: var(--cream-deep); }
+.card__placeholder {
+  width: 100%; height: 100%;
+  display: grid; place-content: center; justify-items: center; gap: 1rem;
+  border: 1px solid rgba(33,29,24,.12);
 }
+.card__placeholder img { width: 56px; height: auto; opacity: .45; }
