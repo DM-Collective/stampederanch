@@ -287,6 +287,23 @@ p:last-child { margin-bottom: 0; }
 .section--cream { background: var(--cream-deep); }
 .section--flush { padding-block: 0; }
 
+/* Homepage-only decorative wallpaper on cream-deep (#e7dfcd) sections.
+   Scoped to body.page-home so .section--cream keeps its plain fill on every
+   other page. Solid --cream-deep stays as background-color underneath so the
+   fill is correct the instant the tile loads, and is what's used if either
+   image fails. Tile size is fixed (not %) so the pattern reads at a
+   consistent physical scale regardless of section height. */
+body.page-home .section--cream {
+  background-color: var(--cream-deep);
+  background-repeat: repeat;
+  background-size: 420px 420px;
+  background-image: url("../img/pattern-damask-cream.jpg");
+  background-image: image-set(
+    url("../img/pattern-damask-cream.webp") type("image/webp"),
+    url("../img/pattern-damask-cream.jpg") type("image/jpeg")
+  );
+}
+
 .section-head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .section-head h2 { font-size: var(--fs-h2); }
 /* h2 has no bottom margin globally, so a lead directly beneath it was touching */
