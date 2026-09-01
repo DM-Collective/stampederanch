@@ -267,27 +267,37 @@
   </section>
 
   <!-- ============================ FULL RANCH RENTAL ============================ -->
-  <section class="section section--ink">
-    <div class="wrap split">
-      <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/official-ranch-rockies-1280.webp 1280w, assets/img/official-ranch-rockies-1920.webp 1920w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/official-ranch-rockies-1280.jpg" alt="Ranch pasture and rail fence running west to the snow-capped Rocky Mountains" loading="lazy" width="1280" height="960">
-        </picture>
-      </div>
-      <div data-reveal data-reveal-delay="120">
+  <!-- SYNC: this section is a deliberate mirror of the "Premier Experience" section
+       on venues.html (id="full-ranch"). Same image, copy, layout and styling by
+       design — if you edit one, edit the other so the two don't drift apart.
+       The only intentional difference is the CTA href below, since #availability
+       lives on venues.html, not on this page. -->
+  <!-- full-bleed scene fading into this section's own colour; the stats bar above
+       is a separate section and keeps its solid background -->
+  <section class="section section--ink section--immersive" id="full-ranch">
+    <div class="immersive__media">
+      <picture>
+        <source type="image/webp" srcset="assets/img/official-ranch-cabin-640.webp 640w, assets/img/official-ranch-cabin-1280.webp 1280w, assets/img/official-ranch-cabin-1920.webp 1920w" sizes="100vw">
+        <img src="assets/img/official-ranch-cabin-1280.jpg" alt="The timber ranch lodge across open pasture, rail fence in the foreground and the snow-capped Rockies beyond" loading="lazy" width="1280" height="961">
+      </picture>
+    </div>
+    <div class="immersive__veil" aria-hidden="true"></div>
+    <div class="wrap immersive__inner">
+      <div class="immersive__content" data-reveal data-reveal-delay="120">
         <p class="eyebrow eyebrow--gold">The Premier Experience</p>
         <h2>The Ranch, Exclusively Yours</h2>
         <p class="lead">For extraordinary occasions that deserve complete privacy, reserve Stampede Ranch as your own
           private Western estate.</p>
         <p>Full ranch rentals provide exclusive access to the property's primary gathering spaces, grounds, and
-          qualifying amenities, allowing the ranch team to create a completely tailored experience for your group.</p>
+          qualifying amenities — including the Spa &amp; Wellness Center and the Gym — allowing the ranch team to
+          create a completely tailored experience for your group.</p>
         <ul class="facts">
           <li><b>Suitable for</b><span>Destination weddings, executive retreats, corporate gatherings, milestone
             celebrations, private multi-day events and curated Western experiences.</span></li>
           <li><b>Exclusivity</b><span>The property is held for one group at a time.</span></li>
+          <li><b>Amenities</b><span>Qualifying amenities are included as determined by the ranch team.</span></li>
         </ul>
-        <p style="margin-top:2rem"><a class="btn btn--gold" href="venues.html#full-ranch">Explore the Full Ranch Rental</a></p>
+        <p style="margin-top:2rem"><a class="btn btn--gold" href="venues.html#availability">Request Availability</a></p>
       </div>
     </div>
   </section>
