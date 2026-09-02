@@ -515,12 +515,17 @@ body.page-home .section--cream {
    it doesn't register as a "motif". */
 .heritage-timeline {
   background-color: var(--charcoal-deep);
-  background-repeat: repeat;
-  background-size: 900px 900px;
-  background-image: url("../img/texture-heritage-dark.jpg");
+  /* Client-supplied leather texture, used as a single cover-fit image rather
+     than a repeating tile (source isn't a guaranteed seamless tile, so
+     cover avoids any visible seam). Position center-top so the texture's
+     detail stays visible near the header regardless of section height. */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-image: url("../img/texture-heritage-leather.jpg");
   background-image: image-set(
-    url("../img/texture-heritage-dark.webp") type("image/webp"),
-    url("../img/texture-heritage-dark.jpg") type("image/jpeg")
+    url("../img/texture-heritage-leather.webp") type("image/webp"),
+    url("../img/texture-heritage-leather.jpg") type("image/jpeg")
   );
 }
 
