@@ -532,10 +532,10 @@ body.page-wallpaper .section--cream {
   background-size: cover, 640px auto;
   background-position: center top, top left;
   background-image:
-    linear-gradient(rgba(21, 18, 16, .5), rgba(21, 18, 16, .5)),
+    linear-gradient(rgba(21, 18, 16, .75), rgba(21, 18, 16, .75)),
     url("../img/texture-heritage-dark-tile.jpg");
   background-image:
-    linear-gradient(rgba(21, 18, 16, .5), rgba(21, 18, 16, .5)),
+    linear-gradient(rgba(21, 18, 16, .75), rgba(21, 18, 16, .75)),
     image-set(
       url("../img/texture-heritage-dark-tile.webp") type("image/webp"),
       url("../img/texture-heritage-dark-tile.jpg") type("image/jpeg")
