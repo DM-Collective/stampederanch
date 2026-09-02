@@ -707,6 +707,14 @@ body.page-wallpaper .section--cream {
 .heritage-quote .heritage-quote__cite span { min-width: 0; }
 .hq-tick { width: 22px; height: 12px; color: currentColor; opacity: .8; flex: none; }
 
+/* Forces a line break only on wider viewports (used for two Weddings page
+   headlines); on narrower screens the <br> is hidden so the heading just
+   wraps naturally based on available width instead of forcing the same
+   break point on a much narrower column. */
+@media (max-width: 860px) {
+  .br-desktop { display: none; }
+}
+
 @media (max-width: 860px) {
   .heritage-quote__frame { padding: 3rem 1.75rem; }
   .hq-corner { width: 32px; height: 32px; }
