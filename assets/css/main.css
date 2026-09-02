@@ -623,25 +623,21 @@ body.page-home .section--cream {
    defined in the shared sprite -- no new artwork anywhere in this block. */
 .heritage-quote {
   position: relative;
-  background-color: #132c0f;
-  /* Procedurally generated, non-repeating, mean-centered on the base green
-     (same technique as the history-timeline texture) -- reads as "the same
-     dark green with a little age to it", not a visible pattern. Layered
-     under a very soft vignette (deeper edges, faint warm lift center)
-     via the two gradients below the image in the background-image list. */
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-size: cover, cover, cover;
-  background-image:
-    radial-gradient(ellipse at center, rgba(201,162,39,.05) 0%, rgba(0,0,0,0) 55%),
-    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,.28)),
-    url("../img/texture-heritage-green.jpg");
-  background-image:
-    radial-gradient(ellipse at center, rgba(201,162,39,.05) 0%, rgba(0,0,0,0) 55%),
-    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,.28)),
-    image-set(
-      url("../img/texture-heritage-green.webp") type("image/webp"),
-      url("../img/texture-heritage-green.jpg") type("image/jpeg")
-    );
+  /* Client-supplied dark forest-green texture, used directly as the
+     background -- no CSS overlay/gradient on top, per instruction, since
+     the image already carries its own deep tone and soft vignette-like
+     falloff. Cover + no-repeat + center avoids any stretch/seam at any
+     viewport size; background-color is a same-tone fallback only (shows
+     briefly before the image loads, or if it ever fails to load). */
+  background-color: #0d1904;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../img/texture-heritage-quote.jpg");
+  background-image: image-set(
+    url("../img/texture-heritage-quote.webp") type("image/webp"),
+    url("../img/texture-heritage-quote.jpg") type("image/jpeg")
+  );
 }
 
 /* Ornamental inset frame: sits with generous breathing room inside the
