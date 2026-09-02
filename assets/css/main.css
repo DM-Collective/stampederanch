@@ -14,6 +14,7 @@
   --rust-text:     #8f4523;   /* accessible rust for small text on cream/cream-deep (AA at 11px) */
   --sage:          #78876e;
   --sage-deep:     #454f3b;
+  --forest-deep:   #1a3003;   /* used only by the pull-quote section background */
   --gold:          #c9a227;
   --gold-light:    #e4c976;
   --charcoal:      #211d18;
@@ -283,7 +284,7 @@ p:last-child { margin-bottom: 0; }
 .section { padding-block: var(--section-y); }
 .section--dark  { background: var(--charcoal-deep); color: var(--cream); }
 .section--ink   { background: var(--charcoal); color: var(--cream); }
-.section--sage  { background: var(--sage-deep); color: var(--cream); }
+.section--sage  { background: var(--forest-deep); color: var(--cream); }
 .section--cream { background: var(--cream-deep); }
 .section--flush { padding-block: 0; }
 
