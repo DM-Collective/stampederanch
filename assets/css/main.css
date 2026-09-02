@@ -524,18 +524,19 @@ body.page-wallpaper .section--cream {
      auto height so the tile's own aspect ratio is preserved exactly (no
      distortion). Asset was prepared as a seamless tile (offset + feathered
      seam blend) so the repeat has no visible hard edge.
-     A flat #151210 wash sits on top at 50% -- same value as --charcoal-deep,
-     darkens/unifies the texture toward the section's own base tone.
+     A flat #0a0806 wash sits on top at 50% -- darker than --charcoal-deep
+     but at lower opacity than before, so more of the texture's own grain
+     shows through while the overall result still reads very dark.
      Scoped to .heritage-timeline, so this doesn't touch the wallpaper or
      forest-green backgrounds. */
   background-repeat: no-repeat, repeat;
   background-size: cover, 640px auto;
   background-position: center top, top left;
   background-image:
-    linear-gradient(rgba(21, 18, 16, .75), rgba(21, 18, 16, .75)),
+    linear-gradient(rgba(10, 8, 6, .5), rgba(10, 8, 6, .5)),
     url("../img/texture-heritage-dark-tile.jpg");
   background-image:
-    linear-gradient(rgba(21, 18, 16, .75), rgba(21, 18, 16, .75)),
+    linear-gradient(rgba(10, 8, 6, .5), rgba(10, 8, 6, .5)),
     image-set(
       url("../img/texture-heritage-dark-tile.webp") type("image/webp"),
       url("../img/texture-heritage-dark-tile.jpg") type("image/jpeg")
