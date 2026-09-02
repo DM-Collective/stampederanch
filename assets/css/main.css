@@ -518,15 +518,22 @@ body.page-home .section--cream {
   /* Client-supplied leather texture, used as a single cover-fit image rather
      than a repeating tile (source isn't a guaranteed seamless tile, so
      cover avoids any visible seam). Position center-top so the texture's
-     detail stays visible near the header regardless of section height. */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
-  background-image: url("../img/texture-heritage-leather.jpg");
-  background-image: image-set(
-    url("../img/texture-heritage-leather.webp") type("image/webp"),
-    url("../img/texture-heritage-leather.jpg") type("image/jpeg")
-  );
+     detail stays visible near the header regardless of section height.
+     A flat #151210 wash sits on top at 50% -- same color as --charcoal-deep,
+     so it darkens/unifies the texture toward the section's own base tone
+     rather than introducing a new color. */
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center top, center top;
+  background-image:
+    linear-gradient(rgba(21, 18, 16, .5), rgba(21, 18, 16, .5)),
+    url("../img/texture-heritage-leather.jpg");
+  background-image:
+    linear-gradient(rgba(21, 18, 16, .5), rgba(21, 18, 16, .5)),
+    image-set(
+      url("../img/texture-heritage-leather.webp") type("image/webp"),
+      url("../img/texture-heritage-leather.jpg") type("image/jpeg")
+    );
 }
 
 /* Headline ornament: reuses the exact same #frame-flourish artwork as the
