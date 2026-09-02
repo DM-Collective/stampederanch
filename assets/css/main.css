@@ -609,6 +609,111 @@ body.page-home .section--cream {
   text-transform: uppercase; color: var(--gold);
 }
 
+/* Homepage Guy Weadick quote -- Western heritage treatment. A dedicated
+   class (not a reuse of .section--sage), so history.html's plain version of
+   this same quote is completely unaffected. Every ornament reuses the
+   existing #frame-corner / #frame-flourish / #rule-ornament symbols already
+   defined in the shared sprite -- no new artwork anywhere in this block. */
+.heritage-quote {
+  position: relative;
+  background-color: #132c0f;
+  /* Procedurally generated, non-repeating, mean-centered on the base green
+     (same technique as the history-timeline texture) -- reads as "the same
+     dark green with a little age to it", not a visible pattern. Layered
+     under a very soft vignette (deeper edges, faint warm lift center)
+     via the two gradients below the image in the background-image list. */
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: cover, cover, cover;
+  background-image:
+    radial-gradient(ellipse at center, rgba(201,162,39,.05) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,.28)),
+    url("../img/texture-heritage-green.jpg");
+  background-image:
+    radial-gradient(ellipse at center, rgba(201,162,39,.05) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,.28)),
+    image-set(
+      url("../img/texture-heritage-green.webp") type("image/webp"),
+      url("../img/texture-heritage-green.jpg") type("image/jpeg")
+    );
+}
+
+/* Ornamental inset frame: sits with generous breathing room inside the
+   section (padding, not a tight box around the quote) -- a thin gold rule
+   plus a fainter inset second line, echoing the same double-line idea as
+   the photo-frame ::before treatment used elsewhere on the site. */
+.heritage-quote__frame {
+  position: relative;
+  padding: clamp(3rem, 3rem + 4vw, 5.5rem) clamp(1.75rem, 2rem + 3vw, 4.5rem);
+  border: 1px solid rgba(201, 162, 39, .55);
+}
+.heritage-quote__frame::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201, 162, 39, .18);
+  pointer-events: none;
+}
+.hq-corner {
+  position: absolute;
+  width: 42px; height: 42px;
+  color: var(--gold);
+  opacity: .9;
+  pointer-events: none;
+}
+.hq-corner--tl { top: -1px; left: -1px; }
+.hq-corner--tr { top: -1px; right: -1px; transform: scaleX(-1); }
+.hq-corner--bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+.hq-corner--br { bottom: -1px; right: -1px; transform: scale(-1, -1); }
+.hq-cap {
+  position: absolute;
+  left: 50%;
+  width: 84px; height: 27px;
+  color: var(--gold);
+  pointer-events: none;
+}
+.hq-cap--top { top: -1px; transform: translate(-50%, -50%); }
+.hq-cap--bottom { bottom: -1px; transform: translate(-50%, 50%) scaleY(-1); }
+
+/* Ornament above the quote and (mirrored) toward the bottom of the frame,
+   balancing the composition. Same #rule-ornament symbol used on the
+   history timeline, just larger here. */
+.hq-divider {
+  display: block;
+  width: 76px; height: 20px;
+  margin: 0 auto 2.25rem;
+  color: rgba(201, 162, 39, .85);
+}
+.hq-divider--bottom { margin: 2.5rem auto 0; }
+
+/* Attribution gets a small flanking tick either side, replacing the plain
+   centered line -- still the same font-size/letter-spacing/color as
+   .quote cite (inherited), just laid out as icon / text / icon. */
+.heritage-quote .heritage-quote__cite {
+  display: flex; align-items: center; justify-content: center;
+  gap: .85rem;
+}
+.heritage-quote .heritage-quote__cite span { min-width: 0; }
+.hq-tick { width: 22px; height: 12px; color: currentColor; opacity: .8; flex: none; }
+
+@media (max-width: 860px) {
+  .heritage-quote__frame { padding: 3rem 1.75rem; }
+  .hq-corner { width: 32px; height: 32px; }
+  .hq-cap { width: 64px; height: 21px; }
+  .hq-divider { width: 60px; height: 16px; margin-bottom: 1.75rem; }
+  .hq-divider--bottom { margin-top: 2rem; }
+}
+
+@media (max-width: 560px) {
+  .heritage-quote__frame { padding: 2.5rem 1.25rem; }
+  .heritage-quote__frame::before { inset: 7px; }
+  .hq-corner { width: 24px; height: 24px; }
+  .hq-cap { width: 48px; height: 16px; }
+  .hq-divider { width: 48px; height: 13px; margin-bottom: 1.5rem; }
+  .hq-divider--bottom { margin-top: 1.75rem; }
+  .heritage-quote__cite { gap: .5rem; }
+  .hq-tick { width: 16px; height: 9px; }
+}
+
 /* --------------------------------------------------------------------------
    13. Split / feature rows
    -------------------------------------------------------------------------- */
