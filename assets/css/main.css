@@ -295,13 +295,21 @@ p:last-child { margin-bottom: 0; }
    consistent physical scale regardless of section height. */
 body.page-home .section--cream {
   background-color: var(--cream-deep);
-  background-repeat: repeat;
-  background-size: 420px 420px;
-  background-image: url("../img/pattern-damask-cream.jpg");
-  background-image: image-set(
-    url("../img/pattern-damask-cream.webp") type("image/webp"),
-    url("../img/pattern-damask-cream.jpg") type("image/jpeg")
-  );
+  /* Two background layers: a flat #e7decd wash on top (via linear-gradient,
+     since CSS has no plain "solid color image" primitive) at 75% opacity,
+     then the damask pattern underneath. Each background-* property below
+     lists one value per layer, in the same order as background-image. */
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 420px 420px;
+  background-image:
+    linear-gradient(rgba(231, 222, 205, .75), rgba(231, 222, 205, .75)),
+    url("../img/pattern-damask-cream.jpg");
+  background-image:
+    linear-gradient(rgba(231, 222, 205, .75), rgba(231, 222, 205, .75)),
+    image-set(
+      url("../img/pattern-damask-cream.webp") type("image/webp"),
+      url("../img/pattern-damask-cream.jpg") type("image/jpeg")
+    );
 }
 
 .section-head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
