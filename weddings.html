@@ -200,8 +200,8 @@
           <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
           <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
           <picture>
-            <source type="image/webp" srcset="assets/img/banquet-table-640.webp 640w" sizes="(max-width: 860px) 92vw, 46vw">
-            <img src="assets/img/banquet-table-640.jpg" alt="A long harvest table set with candles and greenery inside the ranch great hall" loading="lazy" width="640" height="360">
+            <source type="image/webp" srcset="assets/img/wedding-reception-centerpiece-640.webp 640w, assets/img/wedding-reception-centerpiece-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/wedding-reception-centerpiece-1280.jpg" alt="Candlelit reception centerpiece of white roses and greenery with fine glassware, barn reception softly blurred behind" loading="lazy" width="1280" height="853">
           </picture>
         </div>
       </div>
@@ -250,28 +250,54 @@
   </section>
 
   <!-- GALLERY -->
+  <!-- Expanded from 3 to 6 images to hold all seven supplied wedding photos
+       (one more is used above, in the Exclusive Use split section). Six
+       divides evenly into the existing 3-column .strip grid as two clean
+       rows, so no new CSS/layout change was needed -- same shared .strip
+       class used by the homepage's 3-image aerial strip, untouched. -->
   <section class="section section--flush">
     <div class="strip">
       <figure data-reveal>
         <picture>
-          <source type="image/webp" srcset="assets/img/covered-walkway-winter-640.webp 640w, assets/img/covered-walkway-winter-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
-          <img src="assets/img/covered-walkway-winter-1280.jpg" alt="Snow-covered timber walkway between the ranch buildings" loading="lazy" width="1280" height="720">
+          <source type="image/webp" srcset="assets/img/wedding-ceremony-arch-640.webp 640w, assets/img/wedding-ceremony-arch-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
+          <img src="assets/img/wedding-ceremony-arch-1280.jpg" alt="Floral ceremony arch framed by mountains, with rows of empty chairs waiting for guests" loading="lazy" width="1280" height="853">
         </picture>
-        <figcaption>Winter on the ranch</figcaption>
+        <figcaption>The ceremony arch</figcaption>
       </figure>
-      <figure data-reveal data-reveal-delay="100">
+      <figure data-reveal data-reveal-delay="80">
         <picture>
-          <source type="image/webp" srcset="assets/img/event-hall-640.webp 640w" sizes="(max-width: 860px) 100vw, 33vw">
-          <img src="assets/img/event-hall-640.jpg" alt="The great hall lit for an evening event, antler chandeliers overhead" loading="lazy" width="640" height="360">
+          <source type="image/webp" srcset="assets/img/wedding-couple-barn-goldenhour-640.webp 640w, assets/img/wedding-couple-barn-goldenhour-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
+          <img src="assets/img/wedding-couple-barn-goldenhour-1280.jpg" alt="Bride and groom walking hand in hand toward a lit barn at golden hour, mountains behind" loading="lazy" width="1280" height="853" style="object-position: 58% center">
         </picture>
-        <figcaption>The great hall</figcaption>
+        <figcaption>Golden hour at the barn</figcaption>
       </figure>
-      <figure data-reveal data-reveal-delay="200">
+      <figure data-reveal data-reveal-delay="160">
         <picture>
-          <source type="image/webp" srcset="assets/img/aerial-meadow-fall-640.webp 640w, assets/img/aerial-meadow-fall-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
-          <img src="assets/img/aerial-meadow-fall-1280.jpg" alt="Open meadow ringed with golden aspens in autumn" loading="lazy" width="1280" height="720">
+          <source type="image/webp" srcset="assets/img/wedding-bridal-boots-640.webp 640w, assets/img/wedding-bridal-boots-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
+          <img src="assets/img/wedding-bridal-boots-1280.jpg" alt="Bride's lace gown lifted to reveal embroidered cowboy boots against a weathered barn wall" loading="lazy" width="1280" height="853">
         </picture>
-        <figcaption>The ceremony meadow</figcaption>
+        <figcaption>Boots beneath the gown</figcaption>
+      </figure>
+      <figure data-reveal>
+        <picture>
+          <source type="image/webp" srcset="assets/img/wedding-groom-boutonniere-640.webp 640w, assets/img/wedding-groom-boutonniere-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
+          <img src="assets/img/wedding-groom-boutonniere-1280.jpg" alt="Close-up of the groom's white rose boutonniere and cufflink as he adjusts his jacket" loading="lazy" width="1280" height="853">
+        </picture>
+        <figcaption>The groom's details</figcaption>
+      </figure>
+      <figure data-reveal data-reveal-delay="80">
+        <picture>
+          <source type="image/webp" srcset="assets/img/wedding-bridge-bouquet-640.webp 640w, assets/img/wedding-bridge-bouquet-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
+          <img src="assets/img/wedding-bridge-bouquet-1280.jpg" alt="Bridal bouquet of white roses resting on the railing of the ranch's covered bridge" loading="lazy" width="1280" height="853" style="object-position: 62% center">
+        </picture>
+        <figcaption>The covered bridge</figcaption>
+      </figure>
+      <figure data-reveal data-reveal-delay="160">
+        <picture>
+          <source type="image/webp" srcset="assets/img/wedding-reception-hall-wide-640.webp 640w, assets/img/wedding-reception-hall-wide-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 33vw">
+          <img src="assets/img/wedding-reception-hall-wide-1280.jpg" alt="Long candlelit dinner table set for the reception, string lights strung overhead in the barn" loading="lazy" width="1280" height="853">
+        </picture>
+        <figcaption>Evening in the barn</figcaption>
       </figure>
     </div>
   </section>
