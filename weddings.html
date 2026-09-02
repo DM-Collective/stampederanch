@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/main.css?v=20260826b">
 </head>
-<body>
+<body class="page-wallpaper">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <aside class="rail">
@@ -73,6 +73,34 @@
 
 <div class="shell">
 <main id="main">
+    <!-- Shared sprite for the Western ornament system (reused site-wide from the
+         homepage implementation: photo frames, rule dividers). Defined once per
+         page; referenced via <use>. Purely decorative, hidden from assistive tech. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="frame-corner" viewBox="0 0 30 30" fill="none">
+          <path d="M2 22 C2 10 10 2 22 2" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2 22 C2 24.5 4.5 27 7 27" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M22 2 C24.5 2 27 4.5 27 7" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="8.5" cy="8.5" r="1.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="frame-flourish" viewBox="0 0 68 22" fill="none">
+          <path d="M34 20 L34 10" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M34 10 L29 4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M34 10 L39 4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M29 4 C23 4 20 8 14 8 C10 8 10 4.5 13 4.5" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M39 4 C45 4 48 8 54 8 C58 8 58 4.5 55 4.5" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="34" cy="4" r="2.1" fill="currentColor"/>
+        </symbol>
+        <symbol id="rule-ornament" viewBox="0 0 26 14" fill="none">
+          <path d="M0 7 H8" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M18 7 H26" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M13 2 L18 7 L13 12 L8 7 Z" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="13" cy="7" r="1.1" fill="currentColor"/>
+        </symbol>
+      </defs>
+    </svg>
+
 
   <section class="hero hero--short">
     <div class="hero__media">
@@ -104,37 +132,52 @@
   </section>
 
   <!-- THE WEEKEND -->
-  <section class="section section--dark" id="weekend">
+  <!-- "heritage-timeline" reused from the homepage history section (same
+       leather-texture background + rule-ornament styling). -->
+  <section class="section section--dark heritage-timeline" id="weekend">
     <div class="wrap">
       <div class="section-head center measure" data-reveal>
         <p class="eyebrow">The Shape of It</p>
         <h2>A Ranch Wedding Might Look Like&hellip;</h2>
+        <svg class="heritage-divider" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
         <p class="lead">An illustration of how a weekend can unfold, not a fixed package. Your ranch representative
           will shape the days, the spaces and the amenities with you.</p>
       </div>
       <div class="timeline">
         <div class="timeline__item" data-reveal>
-          <div class="timeline__rule"><b></b><i></i></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b><i></i>
+          </div>
           <p class="timeline__year">Friday</p>
           <h3>Arrival &amp; Welcome</h3>
           <p>Guests roll in down the Cowboy Trail. Drinks along the covered walk, a fire in the log house, and an
             informal supper in the great hall.</p>
         </div>
         <div class="timeline__item" data-reveal data-reveal-delay="100">
-          <div class="timeline__rule"><b></b><i></i></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b><i></i>
+          </div>
           <p class="timeline__year">Saturday</p>
           <h3>Ceremony &amp; Dinner</h3>
           <p>Ceremony on the pasture, cocktails as the light goes, a long seated dinner under the trusses, dancing
             until the band gives out.</p>
         </div>
         <div class="timeline__item" data-reveal data-reveal-delay="200">
-          <div class="timeline__rule"><b></b><i></i></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b><i></i>
+          </div>
           <p class="timeline__year">Sunday</p>
           <h3>Ranch Morning</h3>
           <p>Breakfast on the lodge deck, a trail ride for anyone still standing, and a slow goodbye at the gate.</p>
         </div>
         <div class="timeline__item" data-reveal data-reveal-delay="300">
-          <div class="timeline__rule"><b></b></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b>
+          </div>
           <p class="timeline__year">Any Season</p>
           <h3>Winter Weddings</h3>
           <p>Snow on the foothills, string lights on the barn, skijoring if you're brave. The ranch does not close in
@@ -142,16 +185,25 @@
         </div>
       </div>
     </div>
+
   </section>
 
   <!-- SPLIT: DINNER -->
   <section class="section">
     <div class="wrap split">
       <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/banquet-table-640.webp 640w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/banquet-table-640.jpg" alt="A long harvest table set with candles and greenery inside the ranch great hall" loading="lazy" width="640" height="360">
-        </picture>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/banquet-table-640.webp 640w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/banquet-table-640.jpg" alt="A long harvest table set with candles and greenery inside the ranch great hall" loading="lazy" width="640" height="360">
+          </picture>
+        </div>
       </div>
       <div data-reveal data-reveal-delay="120">
         <p class="eyebrow">How It Comes Together</p>
@@ -173,10 +225,18 @@
   <section class="section section--cream">
     <div class="wrap split split--flip">
       <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/render-back-porch-640.webp 640w, assets/img/render-back-porch-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/render-back-porch-1280.jpg" alt="Rendering of the lodge back porch overlooking the pond" loading="lazy" width="1280" height="705">
-        </picture>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/render-back-porch-640.webp 640w, assets/img/render-back-porch-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/render-back-porch-1280.jpg" alt="Rendering of the lodge back porch overlooking the pond" loading="lazy" width="1280" height="705">
+          </picture>
+        </div>
       </div>
       <div data-reveal data-reveal-delay="120">
         <p class="eyebrow">On the Horizon</p>
@@ -216,10 +276,25 @@
     </div>
   </section>
 
-  <section class="section section--ink quote">
-    <div class="wrap" data-reveal>
+  <!-- "heritage-quote" reused from the homepage Guy Weadick section (same
+       background texture, ornamental border/corners/caps, attribution
+       ticks). No interior above/below-quote ornaments, matching the final
+       approved homepage version. -->
+  <section class="section quote heritage-quote">
+    <div class="wrap heritage-quote__frame" data-reveal>
+      <svg class="hq-corner hq-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-corner hq-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-corner hq-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-corner hq-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-cap hq-cap--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+      <svg class="hq-cap hq-cap--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+
       <blockquote>“An experience of a lifetime.”</blockquote>
-      <cite>The promise the ranch has kept since Guy Weadick's first guests</cite>
+      <cite class="heritage-quote__cite">
+        <svg class="hq-tick" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+        <span>The promise the ranch has kept since Guy Weadick's first guests</span>
+        <svg class="hq-tick" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+      </cite>
     </div>
   </section>
 

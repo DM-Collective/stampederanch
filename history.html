@@ -73,6 +73,34 @@
 
 <div class="shell">
 <main id="main">
+    <!-- Shared sprite for the Western ornament system (reused site-wide from the
+         homepage implementation: photo frames, rule dividers). Defined once per
+         page; referenced via <use>. Purely decorative, hidden from assistive tech. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="frame-corner" viewBox="0 0 30 30" fill="none">
+          <path d="M2 22 C2 10 10 2 22 2" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2 22 C2 24.5 4.5 27 7 27" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M22 2 C24.5 2 27 4.5 27 7" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="8.5" cy="8.5" r="1.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="frame-flourish" viewBox="0 0 68 22" fill="none">
+          <path d="M34 20 L34 10" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M34 10 L29 4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M34 10 L39 4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M29 4 C23 4 20 8 14 8 C10 8 10 4.5 13 4.5" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M39 4 C45 4 48 8 54 8 C58 8 58 4.5 55 4.5" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="34" cy="4" r="2.1" fill="currentColor"/>
+        </symbol>
+        <symbol id="rule-ornament" viewBox="0 0 26 14" fill="none">
+          <path d="M0 7 H8" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M18 7 H26" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M13 2 L18 7 L13 12 L8 7 Z" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="13" cy="7" r="1.1" fill="currentColor"/>
+        </symbol>
+      </defs>
+    </svg>
+
 
   <section class="hero hero--short">
     <div class="hero__media">
@@ -97,13 +125,18 @@
            alt="" width="47" height="96">
       <p class="eyebrow">A Legacy Worth Elevating</p>
       <h2>Every Great Ranch Brand Is Built on a True Story</h2>
+      <svg class="heritage-divider" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
       <p class="lead">The Stampede Ranch has one of the best in Alberta — and it belongs at the heart of the place,
         not buried in a footnote. What follows is the ranch as it actually happened, era by era.</p>
     </div>
   </section>
 
   <!-- ERAS -->
-  <section class="section--dark">
+  <!-- "heritage-timeline" reused from the homepage history section for its
+       leather-texture background only -- this page's era markup (.era, not
+       .timeline__item) doesn't match the component's other child rules,
+       so nothing else about the existing era layout changes. -->
+  <section class="section--dark heritage-timeline">
     <div class="wrap">
 
       <article class="era" data-reveal>
@@ -117,10 +150,18 @@
             <p>The country they settled has not changed much: open grass running west into timber, a river cutting
               through the coulee, and the Rockies holding up the far edge of the sky.</p>
             <figure class="era__media">
-              <picture>
-                <source type="image/webp" srcset="assets/img/aerial-summer-valley-640.webp 640w, assets/img/aerial-summer-valley-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 60vw">
-                <img src="assets/img/aerial-summer-valley-1280.jpg" alt="Aerial view of ranch grassland and river flats running west toward the Rocky Mountains" loading="lazy" width="1280" height="960">
-              </picture>
+              <div class="card__frame">
+                <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+                <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+                <picture>
+                  <source type="image/webp" srcset="assets/img/aerial-summer-valley-640.webp 640w, assets/img/aerial-summer-valley-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 60vw">
+                  <img src="assets/img/aerial-summer-valley-1280.jpg" alt="Aerial view of ranch grassland and river flats running west toward the Rocky Mountains" loading="lazy" width="1280" height="960">
+                </picture>
+              </div>
               <figcaption>The original range, photographed from the air in 2024.</figcaption>
             </figure>
           </div>
@@ -158,10 +199,18 @@
               chapter of the ranch's history that most changed lives, and it is why "an experience of a lifetime" has
               never been a marketing line here.</p>
             <figure class="era__media">
-              <picture>
-                <source type="image/webp" srcset="assets/img/winter-wagon-barn-640.webp 640w, assets/img/winter-wagon-barn-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 60vw">
-                <img src="assets/img/winter-wagon-barn-1280.jpg" alt="A hay wagon parked under the covered walk in winter, ranch buildings behind" loading="lazy" width="1280" height="720">
-              </picture>
+              <div class="card__frame">
+                <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+                <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+                <picture>
+                  <source type="image/webp" srcset="assets/img/winter-wagon-barn-640.webp 640w, assets/img/winter-wagon-barn-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 60vw">
+                  <img src="assets/img/winter-wagon-barn-1280.jpg" alt="A hay wagon parked under the covered walk in winter, ranch buildings behind" loading="lazy" width="1280" height="720">
+                </picture>
+              </div>
               <figcaption>The ranch yard in winter — the working heart of the property.</figcaption>
             </figure>
           </div>
@@ -180,10 +229,18 @@
               weddings, private events, and the kind of Western hospitality this land has offered since Guy Weadick's
               first guests arrived.</p>
             <figure class="era__media">
-              <picture>
-                <source type="image/webp" srcset="assets/img/render-entry-porch-640.webp 640w, assets/img/render-entry-porch-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 60vw">
-                <img src="assets/img/render-entry-porch-1280.jpg" alt="Architectural rendering of the new Event Venue entry porch with guests arriving" loading="lazy" width="1280" height="705">
-              </picture>
+              <div class="card__frame">
+                <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+                <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+                <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+                <picture>
+                  <source type="image/webp" srcset="assets/img/render-entry-porch-640.webp 640w, assets/img/render-entry-porch-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 60vw">
+                  <img src="assets/img/render-entry-porch-1280.jpg" alt="Architectural rendering of the new Event Venue entry porch with guests arriving" loading="lazy" width="1280" height="705">
+                </picture>
+              </div>
               <figcaption>The next chapter — concept rendering of the new entry porch, Bennett Partners, 2025.</figcaption>
             </figure>
           </div>
@@ -193,20 +250,42 @@
     </div>
   </section>
 
-  <section class="section section--sage quote">
-    <div class="wrap" data-reveal>
+  <!-- "heritage-quote" reused from the homepage Guy Weadick section. Same
+       quote and attribution wording as this page already had -- only the
+       visual treatment changes. -->
+  <section class="section quote heritage-quote">
+    <div class="wrap heritage-quote__frame" data-reveal>
+      <svg class="hq-corner hq-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-corner hq-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-corner hq-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-corner hq-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+      <svg class="hq-cap hq-cap--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+      <svg class="hq-cap hq-cap--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+
       <blockquote>“Make it the greatest thing of its kind in the world.”</blockquote>
-      <cite>Guy Weadick</cite>
+      <cite class="heritage-quote__cite">
+        <svg class="hq-tick" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+        <span>Guy Weadick</span>
+        <svg class="hq-tick" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+      </cite>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap split">
       <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/ranch-entrance-sign-640.webp 640w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/ranch-entrance-sign-640.jpg" alt="The Stampede Ranch stone entrance sign at the top of the drive" loading="lazy" width="640" height="360">
-        </picture>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/ranch-entrance-sign-640.webp 640w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/ranch-entrance-sign-640.jpg" alt="The Stampede Ranch stone entrance sign at the top of the drive" loading="lazy" width="640" height="360">
+          </picture>
+        </div>
       </div>
       <div data-reveal data-reveal-delay="120">
         <p class="eyebrow">Come See It</p>

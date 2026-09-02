@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/main.css?v=20260826b">
 </head>
-<body>
+<body class="page-wallpaper">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <aside class="rail">
@@ -73,6 +73,34 @@
 
 <div class="shell">
 <main id="main">
+    <!-- Shared sprite for the Western ornament system (reused site-wide from the
+         homepage implementation: photo frames, rule dividers). Defined once per
+         page; referenced via <use>. Purely decorative, hidden from assistive tech. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="frame-corner" viewBox="0 0 30 30" fill="none">
+          <path d="M2 22 C2 10 10 2 22 2" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2 22 C2 24.5 4.5 27 7 27" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M22 2 C24.5 2 27 4.5 27 7" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="8.5" cy="8.5" r="1.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="frame-flourish" viewBox="0 0 68 22" fill="none">
+          <path d="M34 20 L34 10" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M34 10 L29 4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M34 10 L39 4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M29 4 C23 4 20 8 14 8 C10 8 10 4.5 13 4.5" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M39 4 C45 4 48 8 54 8 C58 8 58 4.5 55 4.5" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="34" cy="4" r="2.1" fill="currentColor"/>
+        </symbol>
+        <symbol id="rule-ornament" viewBox="0 0 26 14" fill="none">
+          <path d="M0 7 H8" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M18 7 H26" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M13 2 L18 7 L13 12 L8 7 Z" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="13" cy="7" r="1.1" fill="currentColor"/>
+        </symbol>
+      </defs>
+    </svg>
+
 
   <section class="hero hero--short">
     <div class="hero__media">
@@ -149,10 +177,18 @@
   <section class="section" id="event-venue">
     <div class="wrap split split--flip">
       <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/render-event-barn-640.webp 640w, assets/img/render-event-barn-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/render-event-barn-1280.jpg" alt="Architectural rendering of the Event Venue exterior with silo and stone base" loading="lazy" width="1280" height="705">
-        </picture>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/render-event-barn-640.webp 640w, assets/img/render-event-barn-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/render-event-barn-1280.jpg" alt="Architectural rendering of the Event Venue exterior with silo and stone base" loading="lazy" width="1280" height="705">
+          </picture>
+        </div>
       </div>
       <div data-reveal data-reveal-delay="120">
         <p class="eyebrow">A Major Standalone Venue</p>
@@ -174,10 +210,18 @@
   <section class="section section--cream" id="lodge">
     <div class="wrap split">
       <div class="split__media" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="assets/img/render-lodge-arrival-640.webp 640w, assets/img/render-lodge-arrival-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
-          <img src="assets/img/render-lodge-arrival-1280.jpg" alt="Architectural rendering of the Lodge arrival elevation in timber and stone" loading="lazy" width="1280" height="705">
-        </picture>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/render-lodge-arrival-640.webp 640w, assets/img/render-lodge-arrival-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/render-lodge-arrival-1280.jpg" alt="Architectural rendering of the Lodge arrival elevation in timber and stone" loading="lazy" width="1280" height="705">
+          </picture>
+        </div>
       </div>
       <div data-reveal data-reveal-delay="120">
         <p class="eyebrow">An Exclusive-Use Property</p>
@@ -211,12 +255,20 @@
       <div class="grid grid--3">
 
         <article class="card" data-reveal>
-          <div class="card__media">
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
             <picture>
               <source type="image/webp" srcset="assets/img/loft-lounge-640.webp 640w" sizes="(max-width: 860px) 92vw, 31vw">
               <img src="assets/img/loft-lounge-640.jpg" alt="Open upper-floor room with a long bar, wood floors and vaulted timber ceiling" loading="lazy" width="640" height="360">
             </picture>
             <span class="card__tag">Upper floor only</span>
+          </div>
           </div>
           <div class="card__body">
             <h3>The Big Barn</h3>
@@ -229,12 +281,20 @@
         </article>
 
         <article class="card" data-reveal data-reveal-delay="90">
-          <div class="card__media">
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
             <picture>
               <source type="image/webp" srcset="assets/img/event-hall-640.webp 640w" sizes="(max-width: 860px) 92vw, 31vw">
               <img src="assets/img/event-hall-640.jpg" alt="Interior gathering room with antler chandeliers and a long bar" loading="lazy" width="640" height="360">
             </picture>
             <span class="card__tag">Intimate gatherings</span>
+          </div>
           </div>
           <div class="card__body">
             <h3>The Milk Barn</h3>
@@ -247,12 +307,20 @@
         </article>
 
         <article class="card" data-reveal data-reveal-delay="180">
-          <div class="card__media">
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
             <picture>
               <source type="image/webp" srcset="assets/img/official-bridge-640.webp 640w, assets/img/official-bridge-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 31vw">
               <img src="assets/img/official-bridge-1280.jpg" alt="The covered timber bridge at the ranch, lit by an orange sunset sky" loading="lazy" width="1280" height="2276">
             </picture>
             <span class="card__tag">Private dining</span>
+          </div>
           </div>
           <div class="card__body">
             <h3>The Bridge</h3>
@@ -265,12 +333,20 @@
         </article>
 
         <article class="card" data-reveal>
-          <div class="card__media">
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
             <picture>
               <source type="image/webp" srcset="assets/img/official-arena-640.webp 640w, assets/img/official-arena-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 31vw">
               <img src="assets/img/official-arena-1280.jpg" alt="Riders gathered on horseback in the ranch outdoor arena, bleachers and ranch buildings behind" loading="lazy" width="1280" height="960">
             </picture>
             <span class="card__tag">Western experiences</span>
+          </div>
           </div>
           <div class="card__body">
             <h3>Outdoor Arena &amp; Bleachers</h3>
@@ -283,12 +359,20 @@
         </article>
 
         <article class="card" data-reveal data-reveal-delay="90">
-          <div class="card__media">
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
             <picture>
               <source type="image/webp" srcset="assets/img/official-pasture-river-640.webp 640w, assets/img/official-pasture-river-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 31vw">
               <img src="assets/img/official-pasture-river-1280.jpg" alt="Horses grazing beside the creek on the ranch river flats, foothills behind" loading="lazy" width="1280" height="960">
             </picture>
             <span class="card__tag">Open ground</span>
+          </div>
           </div>
           <div class="card__body">
             <h3>Pasture &amp; River Flats</h3>
@@ -317,12 +401,20 @@
       <div class="grid grid--3">
 
         <article class="card" data-reveal>
-          <div class="card__media">
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
             <picture>
               <source type="image/webp" srcset="assets/img/official-gym-640.webp 640w" sizes="(max-width: 860px) 92vw, 31vw">
               <img src="assets/img/official-gym-640.jpg" alt="The ranch gym under a timber ceiling with an antler chandelier and training equipment" loading="lazy" width="640" height="853">
             </picture>
             <span class="card__tag">Private amenity</span>
+          </div>
           </div>
           <div class="card__body">
             <h3>The Gym</h3>

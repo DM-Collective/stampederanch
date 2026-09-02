@@ -288,13 +288,15 @@ p:last-child { margin-bottom: 0; }
 .section--cream { background: var(--cream-deep); }
 .section--flush { padding-block: 0; }
 
-/* Homepage-only decorative wallpaper on cream-deep (#e7dfcd) sections.
-   Scoped to body.page-home so .section--cream keeps its plain fill on every
-   other page. Solid --cream-deep stays as background-color underneath so the
-   fill is correct the instant the tile loads, and is what's used if either
-   image fails. Tile size is fixed (not %) so the pattern reads at a
+/* Approved wallpaper treatment (#e7decd base), reused wherever a light
+   .section--cream appears on a page that opts in via body.page-wallpaper.
+   Not applied globally to .section--cream itself, so pages/sections that
+   intentionally keep a plain cream fill (or aren't part of this rollout)
+   are unaffected. Solid --cream-deep stays as background-color underneath
+   so the fill is correct the instant the tile loads, and is what's used if
+   either image fails. Tile size is fixed (not %) so the pattern reads at a
    consistent physical scale regardless of section height. */
-body.page-home .section--cream {
+body.page-wallpaper .section--cream {
   background-color: var(--cream-deep);
   /* Two background layers: a flat #e7decd wash on top (via linear-gradient,
      since CSS has no plain "solid color image" primitive) at 75% opacity,
