@@ -681,16 +681,13 @@ body.page-home .section--cream {
 .hq-cap--top { top: -1px; transform: translate(-50%, -50%); }
 .hq-cap--bottom { bottom: -1px; transform: translate(-50%, 50%) scaleY(-1); }
 
-/* Ornament above the quote and (mirrored) toward the bottom of the frame,
-   balancing the composition. Same #rule-ornament symbol used on the
-   history timeline, just larger here. */
-.hq-divider {
-  display: block;
-  width: 76px; height: 20px;
-  margin: 0 auto 2.25rem;
-  color: rgba(201, 162, 39, .85);
-}
-.hq-divider--bottom { margin: 2.5rem auto 0; }
+/* The two interior ornaments (above the quote / below the attribution)
+   were removed per request -- corners, top/bottom border caps, and the
+   attribution's flanking ticks all stay. Spacing that the removed
+   ornaments used to occupy is preserved here directly on the blockquote/
+   cite, so the vertical composition inside the frame is unchanged. */
+.heritage-quote blockquote { margin-top: 3.5rem; }
+.heritage-quote .heritage-quote__cite { margin-bottom: 3.75rem; }
 
 /* Attribution gets a small flanking tick either side, replacing the plain
    centered line -- still the same font-size/letter-spacing/color as
@@ -706,8 +703,8 @@ body.page-home .section--cream {
   .heritage-quote__frame { padding: 3rem 1.75rem; }
   .hq-corner { width: 32px; height: 32px; }
   .hq-cap { width: 64px; height: 21px; }
-  .hq-divider { width: 60px; height: 16px; margin-bottom: 1.75rem; }
-  .hq-divider--bottom { margin-top: 2rem; }
+  .heritage-quote blockquote { margin-top: 2.75rem; }
+  .heritage-quote .heritage-quote__cite { margin-bottom: 3rem; }
 }
 
 @media (max-width: 560px) {
@@ -715,9 +712,8 @@ body.page-home .section--cream {
   .heritage-quote__frame::before { inset: 7px; }
   .hq-corner { width: 24px; height: 24px; }
   .hq-cap { width: 48px; height: 16px; }
-  .hq-divider { width: 48px; height: 13px; margin-bottom: 1.5rem; }
-  .hq-divider--bottom { margin-top: 1.75rem; }
-  .heritage-quote__cite { gap: .5rem; }
+  .heritage-quote blockquote { margin-top: 2.25rem; }
+  .heritage-quote .heritage-quote__cite { margin-bottom: 2.5rem; gap: .5rem; }
   .hq-tick { width: 16px; height: 9px; }
 }
 
