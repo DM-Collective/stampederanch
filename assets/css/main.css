@@ -517,24 +517,27 @@ body.page-wallpaper .section--cream {
    it doesn't register as a "motif". */
 .heritage-timeline {
   background-color: var(--charcoal-deep);
-  /* Client-supplied leather texture, used as a single cover-fit image rather
-     than a repeating tile (source isn't a guaranteed seamless tile, so
-     cover avoids any visible seam). Position center-top so the texture's
-     detail stays visible near the header regardless of section height.
+  /* Repeating leather-texture tile (NOT cover/stretch) so the grain reads
+     at the same physical scale regardless of section height -- a tall
+     section just repeats more copies of the same tile, it never enlarges
+     one copy to fill the box. background-size uses a fixed width with
+     auto height so the tile's own aspect ratio is preserved exactly (no
+     distortion). Asset was prepared as a seamless tile (offset + feathered
+     seam blend) so the repeat has no visible hard edge.
      A flat #151210 wash sits on top at 50% -- same color as --charcoal-deep,
      so it darkens/unifies the texture toward the section's own base tone
      rather than introducing a new color. */
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, cover;
-  background-position: center top, center top;
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 640px auto;
+  background-position: center top, top left;
   background-image:
     linear-gradient(rgba(21, 18, 16, .5), rgba(21, 18, 16, .5)),
-    url("../img/texture-heritage-leather.jpg");
+    url("../img/texture-heritage-dark-tile.jpg");
   background-image:
     linear-gradient(rgba(21, 18, 16, .5), rgba(21, 18, 16, .5)),
     image-set(
-      url("../img/texture-heritage-leather.webp") type("image/webp"),
-      url("../img/texture-heritage-leather.jpg") type("image/jpeg")
+      url("../img/texture-heritage-dark-tile.webp") type("image/webp"),
+      url("../img/texture-heritage-dark-tile.jpg") type("image/jpeg")
     );
 }
 
