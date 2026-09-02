@@ -426,46 +426,57 @@ body.page-home .section--cream {
 }
 .section--dark .card__more, .section--ink .card__more { color: var(--gold); }
 
-/* Decorative Western frame — homepage "Ranch Experience" cards ONLY.
-   Scoped under .grid--framed so every other .card/.card__media usage on this
-   page and every other page (venues/weddings/history/contact) is untouched.
-   .card__frame wraps the existing, unmodified .card__media (which keeps its
-   own overflow:hidden for the hover zoom); the frame itself has no
-   overflow:hidden so the corner scrolls and cap flourishes can sit slightly
-   outside its border without being clipped. */
-.grid--framed .card__frame {
+/* Decorative Western frame — homepage only (Ranch Experience cards, plus the
+   Event Venue / Lodge / Mercantile feature photos). Was originally scoped
+   under .grid--framed; generalized to plain .card__frame so the identical
+   component can wrap any qualifying image without duplicating these rules.
+   Every declaration below is byte-for-byte the same as the original —
+   only the selector prefix changed, so the Ranch Experience cards render
+   identically to before. Still page-scoped: this class doesn't exist
+   anywhere in venues/weddings/history/contact, so they're untouched.
+   .card__frame wraps the media (picture/img) directly; the frame itself has
+   no overflow:hidden so the corner scrolls and cap flourishes can sit
+   slightly outside its border without being clipped. */
+.card__frame {
   position: relative;
   padding: 14px;
   background: var(--cream);
   border: 1px solid var(--rust-deep);
   box-sizing: border-box;
 }
-.grid--framed .card__frame::before {
+.card__frame::before {
   content: "";
   position: absolute;
   inset: 6px;
   border: 1px solid var(--rust-deep);
   pointer-events: none;
 }
-.grid--framed .frame-corner {
+.frame-corner {
   position: absolute;
   width: 30px; height: 30px;
   color: var(--rust-deep);
   pointer-events: none;
 }
-.grid--framed .frame-corner--tl { top: -1px; left: -1px; }
-.grid--framed .frame-corner--tr { top: -1px; right: -1px; transform: scaleX(-1); }
-.grid--framed .frame-corner--bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
-.grid--framed .frame-corner--br { bottom: -1px; right: -1px; transform: scale(-1, -1); }
-.grid--framed .frame-flourish {
+.frame-corner--tl { top: -1px; left: -1px; }
+.frame-corner--tr { top: -1px; right: -1px; transform: scaleX(-1); }
+.frame-corner--bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+.frame-corner--br { bottom: -1px; right: -1px; transform: scale(-1, -1); }
+.frame-flourish {
   position: absolute;
   left: 50%;
   width: 68px; height: 22px;
   color: var(--rust-deep);
   pointer-events: none;
 }
-.grid--framed .frame-flourish--top { top: 0; transform: translate(-50%, -50%); }
-.grid--framed .frame-flourish--bottom { bottom: 0; transform: translate(-50%, 50%) scaleY(-1); }
+.frame-flourish--top { top: 0; transform: translate(-50%, -50%); }
+.frame-flourish--bottom { bottom: 0; transform: translate(-50%, 50%) scaleY(-1); }
+
+/* Feature-photo variant: same ornament, used on standalone split-section
+   images (not inside a card grid). Wraps the picture directly inside the
+   existing .split__media, so .split__media img's own sizing/aspect-ratio
+   rules still apply unchanged — the frame only adds the padded mat + border
+   around it, it doesn't resize or crop the photo. */
+.split__media .card__frame { display: block; }
 
 /* --------------------------------------------------------------------------
    10. Timeline
