@@ -501,6 +501,78 @@ body.page-home .section--cream {
 .timeline__item h3 { font-size: 1.375rem; margin-bottom: .7rem; }
 .timeline__item p { font-size: var(--fs-small); color: rgba(244,239,228,.7); }
 
+/* Homepage "135+ Years in the Alberta Foothills" heritage treatment.
+   Everything in this block is scoped to .heritage-timeline specifically
+   (added only to that one <section>) so the plain .timeline/.timeline__item/
+   .section--dark/.btn--gold rules above stay exactly as they were for every
+   other page and section that reuses those same base classes. */
+
+/* Extremely subtle aged-paper/leather mottle. Procedurally generated (not a
+   photo), mean-centered on --charcoal-deep so it reads as "the same dark
+   color with a little more character" rather than a visible pattern. Large,
+   non-tiling-obvious tile size and organic (non-repeating-looking) noise, so
+   it doesn't register as a "motif". */
+.heritage-timeline {
+  background-color: var(--charcoal-deep);
+  background-repeat: repeat;
+  background-size: 900px 900px;
+  background-image: url("../img/texture-heritage-dark.jpg");
+  background-image: image-set(
+    url("../img/texture-heritage-dark.webp") type("image/webp"),
+    url("../img/texture-heritage-dark.jpg") type("image/jpeg")
+  );
+}
+
+/* Headline ornament: reuses the exact same #frame-flourish artwork as the
+   photo frames, just recolored to antique gold (photo frames use rust-deep,
+   which reads correctly on cream but not on this dark background) and sized
+   down slightly. */
+.heritage-divider {
+  display: block;
+  width: 52px; height: 17px;
+  margin: 1.1rem auto 0;
+  color: var(--gold);
+  opacity: .85;
+}
+
+/* Per-era rule: small tick-lozenge ornament ahead of the existing gold dot
+   + line. The dot gets a thin antique-gold ring (a quiet "engraved medallion"
+   read) instead of a plain filled circle. */
+.heritage-timeline .timeline__rule { gap: .55rem; }
+.heritage-timeline .rule-ornament {
+  width: 20px; height: 11px;
+  color: rgba(201, 162, 39, .55);
+  flex: none;
+}
+.heritage-timeline .timeline__rule b {
+  position: relative;
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, .22);
+}
+.heritage-timeline .timeline__rule i { background: rgba(201, 162, 39, .2); }
+
+/* Very quiet era separators: a hairline between columns on desktop/tablet.
+   Swaps to a top hairline once the grid stacks to one column on mobile,
+   rather than forcing a vertical rule that would make no sense stacked. */
+.heritage-timeline .timeline__item:not(:last-child) {
+  border-right: 1px solid rgba(201, 162, 39, .14);
+}
+
+/* Heritage CTA: thin antique-gold outline instead of a solid gold fill, with
+   a small ornament tick on each side of the label. Same .btn base (sizing,
+   uppercase, letter-spacing, hover-lift, focus ring) as every other button
+   on the site -- only the fill/border/color are new, and only for this one
+   button; .btn--gold elsewhere is untouched. */
+.btn--heritage {
+  background: transparent;
+  color: var(--gold);
+  border-color: rgba(201, 162, 39, .6);
+}
+.btn--heritage:hover {
+  background: rgba(201, 162, 39, .1);
+  border-color: var(--gold);
+}
+.btn--heritage .rule-ornament { width: 18px; height: 10px; color: currentColor; opacity: .8; }
+
 /* --------------------------------------------------------------------------
    11. Aerial strip / galleries
    -------------------------------------------------------------------------- */
@@ -708,6 +780,12 @@ body.page-home .section--cream {
   .grid--4 { grid-template-columns: 1fr; }
   .timeline { grid-template-columns: 1fr; }
   .timeline__item { padding-right: 0; }
+  .heritage-timeline .timeline__item:not(:last-child) { border-right: none; }
+  .heritage-timeline .timeline__item:not(:first-child) {
+    border-top: 1px solid rgba(201, 162, 39, .14);
+    padding-top: 1.75rem;
+    margin-top: .25rem;
+  }
   .footer__grid { grid-template-columns: 1fr; }
   .facts li { grid-template-columns: 1fr; gap: .25rem; }
   .hero__actions .btn { width: 100%; }

@@ -180,6 +180,15 @@
             <path d="M39 4 C45 4 48 8 54 8 C58 8 58 4.5 55 4.5" stroke="currentColor" stroke-width="1.1"/>
             <circle cx="34" cy="4" r="2.1" fill="currentColor"/>
           </symbol>
+          <!-- Small tick-and-lozenge ornament: same linework family as the photo-frame
+               flourish above (thin strokes, small diamond, center dot), scaled down
+               for the history timeline rules and its CTA button. -->
+          <symbol id="rule-ornament" viewBox="0 0 26 14" fill="none">
+            <path d="M0 7 H8" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M18 7 H26" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M13 2 L18 7 L13 12 L8 7 Z" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="13" cy="7" r="1.1" fill="currentColor"/>
+          </symbol>
         </defs>
       </svg>
 
@@ -280,34 +289,50 @@
   </section>
 
   <!-- ============================ HISTORY TIMELINE ============================ -->
-  <section class="section section--dark">
+  <!-- "heritage-timeline" scopes every new rule below (texture, dividers, ornament,
+       CTA button) to just this section -- .section--dark, .timeline and .btn--gold
+       are all used elsewhere on the site and must stay exactly as they are there. -->
+  <section class="section section--dark heritage-timeline">
     <div class="wrap">
       <div class="section-head center measure" data-reveal>
         <p class="eyebrow">A Legacy Worth Elevating</p>
         <h2>135+ Years in the Alberta Foothills</h2>
+        <svg class="heritage-divider" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
       </div>
 
       <div class="timeline">
         <div class="timeline__item" data-reveal>
-          <div class="timeline__rule"><b></b><i></i></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b><i></i>
+          </div>
           <p class="timeline__year">1885</p>
           <h3>Beginnings at the Bar U</h3>
           <p>Henry Minesinger establishes the ranch that becomes The Stampede Ranch.</p>
         </div>
         <div class="timeline__item" data-reveal data-reveal-delay="100">
-          <div class="timeline__rule"><b></b><i></i></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b><i></i>
+          </div>
           <p class="timeline__year">1920–1947</p>
           <h3>Weadick &amp; LaDue</h3>
           <p>Calgary Stampede founder Guy Weadick turns the ranch into a dude ranch.</p>
         </div>
         <div class="timeline__item" data-reveal data-reveal-delay="200">
-          <div class="timeline__rule"><b></b><i></i></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b><i></i>
+          </div>
           <p class="timeline__year">1965–2013</p>
           <h3>The Edey Family</h3>
           <p>The Stampede Boys' Ranch offers 1,000+ young men purpose and ranch life.</p>
         </div>
         <div class="timeline__item" data-reveal data-reveal-delay="300">
-          <div class="timeline__rule"><b></b></div>
+          <div class="timeline__rule">
+            <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+            <b></b>
+          </div>
           <p class="timeline__year">Today</p>
           <h3>A New Chapter</h3>
           <p>A working cattle ranch opens its gates to weddings and events.</p>
@@ -315,7 +340,11 @@
       </div>
 
       <p class="center" style="margin-top:3.5rem" data-reveal>
-        <a class="btn btn--gold" href="history.html">Read the Full Story</a>
+        <a class="btn btn--heritage" href="history.html">
+          <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+          <span>Read the Full Story</span>
+          <svg class="rule-ornament" aria-hidden="true" focusable="false"><use href="#rule-ornament"/></svg>
+        </a>
       </p>
     </div>
   </section>
