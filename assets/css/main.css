@@ -427,7 +427,7 @@ body.page-wallpaper .section--cream {
   letter-spacing: var(--tracking-wide); text-transform: uppercase;
   padding: .45rem .8rem;
 }
-.card__body { padding-top: 1.35rem; }
+.card__body { padding-top: 1.35rem; flex: 1; display: flex; flex-direction: column; }
 .card__body h3 { font-size: var(--fs-h3); margin-bottom: .55rem; }
 .card__body p { font-size: var(--fs-small); color: var(--ink-soft); }
 .section--dark .card__body p, .section--ink .card__body p { color: rgba(244,239,228,.7); }
@@ -745,6 +745,13 @@ body.page-wallpaper .section--cream {
 .split h2 { font-size: var(--fs-h2); margin-bottom: 1.25rem; }
 
 .facts { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: .85rem; }
+/* Inside a card, push the facts block to a consistent bottom position across
+   cards in the same row (card__body is a flex column filling the height the
+   CSS grid already stretches .card to). On mobile the grid collapses to a
+   single column, so there's no cross-card stretch to release from -- each
+   stacked card just sizes to its own content, as intended. */
+.card__body .facts { margin-top: auto; }
+.card__body .card__more { margin-top: auto; padding-top: 1rem; }
 .facts li {
   display: grid; grid-template-columns: 8rem 1fr; gap: 1rem;
   padding-bottom: .85rem; border-bottom: 1px solid var(--rule);
