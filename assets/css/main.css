@@ -624,20 +624,24 @@ body.page-home .section--cream {
 .heritage-quote {
   position: relative;
   /* Client-supplied dark forest-green texture, used directly as the
-     background -- no CSS overlay/gradient on top, per instruction, since
-     the image already carries its own deep tone and soft vignette-like
-     falloff. Cover + no-repeat + center avoids any stretch/seam at any
+     background. Cover + no-repeat + center avoids any stretch/seam at any
      viewport size; background-color is a same-tone fallback only (shows
-     briefly before the image loads, or if it ever fails to load). */
+     briefly before the image loads, or if it ever fails to load).
+     A flat #050D00 wash sits on top at 50% -- darkens/deepens the texture
+     toward near-black-green without hiding it. */
   background-color: #0d1904;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: url("../img/texture-heritage-quote.jpg");
-  background-image: image-set(
-    url("../img/texture-heritage-quote.webp") type("image/webp"),
-    url("../img/texture-heritage-quote.jpg") type("image/jpeg")
-  );
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+  background-image:
+    linear-gradient(rgba(5, 13, 0, .5), rgba(5, 13, 0, .5)),
+    url("../img/texture-heritage-quote.jpg");
+  background-image:
+    linear-gradient(rgba(5, 13, 0, .5), rgba(5, 13, 0, .5)),
+    image-set(
+      url("../img/texture-heritage-quote.webp") type("image/webp"),
+      url("../img/texture-heritage-quote.jpg") type("image/jpeg")
+    );
 }
 
 /* Ornamental inset frame: sits with generous breathing room inside the
