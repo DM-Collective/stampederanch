@@ -161,14 +161,44 @@
         <h2>The Ranch Experience</h2>
       </div>
 
-      <div class="grid grid--4">
+      <!-- Shared sprite for the Western frame ornament (Ranch Experience cards below).
+           Defined once; each card references it via <use> so the artwork is authored
+           in exactly one place. Purely decorative, hidden from assistive tech. -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+          <symbol id="frame-corner" viewBox="0 0 30 30" fill="none">
+            <path d="M2 22 C2 10 10 2 22 2" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M2 22 C2 24.5 4.5 27 7 27" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M22 2 C24.5 2 27 4.5 27 7" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="8.5" cy="8.5" r="1.6" fill="currentColor"/>
+          </symbol>
+          <symbol id="frame-flourish" viewBox="0 0 68 22" fill="none">
+            <path d="M34 20 L34 10" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M34 10 L29 4" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M34 10 L39 4" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M29 4 C23 4 20 8 14 8 C10 8 10 4.5 13 4.5" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M39 4 C45 4 48 8 54 8 C58 8 58 4.5 55 4.5" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="34" cy="4" r="2.1" fill="currentColor"/>
+          </symbol>
+        </defs>
+      </svg>
+
+      <div class="grid grid--4 grid--framed">
         <a class="card" href="venues.html#full-ranch" data-reveal>
-          <div class="card__media">
-            <picture>
-              <source type="image/webp" srcset="assets/img/official-ranch-buildings-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
-              <img src="assets/img/official-ranch-buildings-1280.jpg" alt="The Stampede Ranch buildings across open pasture with the foothills beyond" loading="lazy" width="1280" height="960">
-            </picture>
-            <span class="card__tag">The Premier Experience</span>
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/official-ranch-buildings-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
+                <img src="assets/img/official-ranch-buildings-1280.jpg" alt="The Stampede Ranch buildings across open pasture with the foothills beyond" loading="lazy" width="1280" height="960">
+              </picture>
+              <span class="card__tag">The Premier Experience</span>
+            </div>
           </div>
           <div class="card__body">
             <h3>Full Ranch Rental</h3>
@@ -178,12 +208,20 @@
         </a>
 
         <a class="card" href="weddings.html" data-reveal data-reveal-delay="90">
-          <div class="card__media">
-            <picture>
-              <source type="image/webp" srcset="assets/img/banquet-table-640.webp 640w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
-              <img src="assets/img/banquet-table-640.jpg" alt="A long harvest table set for dinner inside the ranch great hall" loading="lazy" width="640" height="360">
-            </picture>
-            <span class="card__tag">Weddings</span>
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/banquet-table-640.webp 640w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
+                <img src="assets/img/banquet-table-640.jpg" alt="A long harvest table set for dinner inside the ranch great hall" loading="lazy" width="640" height="360">
+              </picture>
+              <span class="card__tag">Weddings</span>
+            </div>
           </div>
           <div class="card__body">
             <h3>Weddings &amp; Celebrations</h3>
@@ -193,12 +231,20 @@
         </a>
 
         <a class="card" href="venues.html#venues" data-reveal data-reveal-delay="180">
-          <div class="card__media">
-            <picture>
-              <source type="image/webp" srcset="assets/img/render-event-barn-interior-640.webp 640w, assets/img/render-event-barn-interior-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
-              <img src="assets/img/render-event-barn-interior-1280.jpg" alt="Architectural rendering of the Event Venue set for a seated dinner" loading="lazy" width="1280" height="705">
-            </picture>
-            <span class="card__tag">Corporate &amp; Private</span>
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/render-event-barn-interior-640.webp 640w, assets/img/render-event-barn-interior-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
+                <img src="assets/img/render-event-barn-interior-1280.jpg" alt="Architectural rendering of the Event Venue set for a seated dinner" loading="lazy" width="1280" height="705">
+              </picture>
+              <span class="card__tag">Corporate &amp; Private</span>
+            </div>
           </div>
           <div class="card__body">
             <h3>Corporate &amp; Private Events</h3>
@@ -208,12 +254,20 @@
         </a>
 
         <a class="card" href="history.html" data-reveal data-reveal-delay="270">
-          <div class="card__media">
-            <picture>
-              <source type="image/webp" srcset="assets/img/winter-wagon-640.webp 640w, assets/img/winter-wagon-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
-              <img src="assets/img/winter-wagon-1280.jpg" alt="A hay wagon beside the ranch bell in winter, foothills behind" loading="lazy" width="1280" height="720">
-            </picture>
-            <span class="card__tag">Our History</span>
+          <div class="card__frame">
+            <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+            <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+            <div class="card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/winter-wagon-640.webp 640w, assets/img/winter-wagon-1280.webp 1280w" sizes="(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw">
+                <img src="assets/img/winter-wagon-1280.jpg" alt="A hay wagon beside the ranch bell in winter, foothills behind" loading="lazy" width="1280" height="720">
+              </picture>
+              <span class="card__tag">Our History</span>
+            </div>
           </div>
           <div class="card__body">
             <h3>135 Years in the Making</h3>

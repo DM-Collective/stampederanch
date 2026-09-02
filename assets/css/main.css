@@ -426,6 +426,47 @@ body.page-home .section--cream {
 }
 .section--dark .card__more, .section--ink .card__more { color: var(--gold); }
 
+/* Decorative Western frame — homepage "Ranch Experience" cards ONLY.
+   Scoped under .grid--framed so every other .card/.card__media usage on this
+   page and every other page (venues/weddings/history/contact) is untouched.
+   .card__frame wraps the existing, unmodified .card__media (which keeps its
+   own overflow:hidden for the hover zoom); the frame itself has no
+   overflow:hidden so the corner scrolls and cap flourishes can sit slightly
+   outside its border without being clipped. */
+.grid--framed .card__frame {
+  position: relative;
+  padding: 14px;
+  background: var(--cream);
+  border: 1px solid var(--rust-deep);
+  box-sizing: border-box;
+}
+.grid--framed .card__frame::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--rust-deep);
+  pointer-events: none;
+}
+.grid--framed .frame-corner {
+  position: absolute;
+  width: 30px; height: 30px;
+  color: var(--rust-deep);
+  pointer-events: none;
+}
+.grid--framed .frame-corner--tl { top: -1px; left: -1px; }
+.grid--framed .frame-corner--tr { top: -1px; right: -1px; transform: scaleX(-1); }
+.grid--framed .frame-corner--bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+.grid--framed .frame-corner--br { bottom: -1px; right: -1px; transform: scale(-1, -1); }
+.grid--framed .frame-flourish {
+  position: absolute;
+  left: 50%;
+  width: 68px; height: 22px;
+  color: var(--rust-deep);
+  pointer-events: none;
+}
+.grid--framed .frame-flourish--top { top: 0; transform: translate(-50%, -50%); }
+.grid--framed .frame-flourish--bottom { bottom: 0; transform: translate(-50%, 50%) scaleY(-1); }
+
 /* --------------------------------------------------------------------------
    10. Timeline
    -------------------------------------------------------------------------- */
