@@ -103,7 +103,7 @@
   <!-- ============================ HERO ============================ -->
   <section class="hero">
     <div class="hero__media">
-      <!-- 4-image carousel hero (Option C). Same .hero__media container,
+      <!-- 5-image carousel hero (Option C). Same .hero__media container,
            same img sizing/object-fit as the video version -- only the
            media itself and its own crossfade logic (assets/js/hero-carousel.js,
            loaded only on this page) are new. -->
@@ -132,6 +132,12 @@
             <img src="assets/img/hero-carousel-4-1280.jpg" alt="Golden-hour light over the ranch garden path at sunrise" loading="lazy">
           </picture>
         </figure>
+        <figure class="hero-carousel__slide" data-hero-slide aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="assets/img/hero-carousel-5-1280.webp 1280w, assets/img/hero-carousel-5-1920.webp 1920w" sizes="100vw">
+            <img src="assets/img/hero-carousel-5-1280.jpg" alt="Snow-covered ranch bridge and wagon in winter, lodge buildings beyond" loading="lazy">
+          </picture>
+        </figure>
       </div>
     </div>
     <div class="hero__scrim"></div>
@@ -157,10 +163,11 @@
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <div class="hero-carousel__dots" role="tablist" aria-label="Hero image slides">
-      <button class="hero-carousel__dot is-active" data-hero-dot="0" role="tab" aria-selected="true" aria-label="Slide 1 of 4"></button>
-      <button class="hero-carousel__dot" data-hero-dot="1" role="tab" aria-selected="false" aria-label="Slide 2 of 4"></button>
-      <button class="hero-carousel__dot" data-hero-dot="2" role="tab" aria-selected="false" aria-label="Slide 3 of 4"></button>
-      <button class="hero-carousel__dot" data-hero-dot="3" role="tab" aria-selected="false" aria-label="Slide 4 of 4"></button>
+      <button class="hero-carousel__dot is-active" data-hero-dot="0" role="tab" aria-selected="true" aria-label="Slide 1 of 5"></button>
+      <button class="hero-carousel__dot" data-hero-dot="1" role="tab" aria-selected="false" aria-label="Slide 2 of 5"></button>
+      <button class="hero-carousel__dot" data-hero-dot="2" role="tab" aria-selected="false" aria-label="Slide 3 of 5"></button>
+      <button class="hero-carousel__dot" data-hero-dot="3" role="tab" aria-selected="false" aria-label="Slide 4 of 5"></button>
+      <button class="hero-carousel__dot" data-hero-dot="4" role="tab" aria-selected="false" aria-label="Slide 5 of 5"></button>
     </div>
   </section>
 
