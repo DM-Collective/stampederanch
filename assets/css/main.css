@@ -879,7 +879,7 @@ body.page-wallpaper .section--cream {
    -------------------------------------------------------------------------- */
 .form { display: grid; gap: 1.5rem; }
 .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.field { display: grid; gap: .5rem; }
+.field { display: grid; gap: .5rem; min-width: 0; }
 .field label {
   font-size: 10px; font-weight: 600; letter-spacing: var(--tracking-wide);
   text-transform: uppercase; color: var(--ink-soft);
@@ -1269,6 +1269,26 @@ body.page-wallpaper .section--cream {
   color: rgba(244,239,228,.82);
   background: rgba(201,162,39,.16);
   border-color: rgba(201,162,39,.5);
+}
+
+/* Grand Opening / Accepting Bookings status badges, used on the Event
+   Venue and Lodge sections (homepage and venues.html) so it's clear the
+   physical venues open in 2027 while inquiries/bookings are open now. */
+.venue-status { display: flex; flex-wrap: wrap; gap: .6rem; margin: .9rem 0 1.1rem; }
+.venue-status__badge {
+  display: inline-flex; align-items: center;
+  padding: .4rem .85rem;
+  font-size: 10px; font-weight: 600; letter-spacing: var(--tracking-wide);
+  text-transform: uppercase; white-space: nowrap;
+  border: 1px solid currentColor;
+}
+.venue-status__badge--opening { color: var(--rust-text); background: rgba(166,82,44,.06); }
+.venue-status__badge--booking { color: var(--sage-deep); background: rgba(69,79,59,.06); }
+.section--ink .venue-status__badge--opening, .section--dark .venue-status__badge--opening {
+  color: var(--gold-light); background: rgba(201,162,39,.12);
+}
+.section--ink .venue-status__badge--booking, .section--dark .venue-status__badge--booking {
+  color: var(--cream); background: rgba(244,239,228,.1);
 }
 
 .facts--wide { max-width: 72ch; gap: 1.25rem; }
