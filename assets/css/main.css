@@ -324,32 +324,15 @@ body.page-wallpaper .section--cream {
 
 /* --------------------------------------------------------------------------
    6b. Stories From the Ranch -- film triptych
-   A restrained, architectural frame distinct from the ornate flourish photo
-   frames used elsewhere: a very thin muted-bronze outline with delicate
-   clipped (notched) corners and a fine inner hairline (double-line detail),
-   separated by a small parchment-toned mat rather than a dark border, so
-   the frame reads as a quiet line-drawing that never competes with the
-   film itself. Used only for this section's three films.
+   Reuses the SAME decorative frame family as "The Ranch Experience"
+   (.card__frame, #frame-corner, #frame-flourish, rust-deep linework) via a
+   thin modifier that only adds the 9:16 aspect ratio these vertical films
+   need -- everything else (padding/parchment gap, border, double-line
+   inset, corner and flourish ornaments, color) is the exact same shared
+   component and assets used elsewhere, not a separate video-only style.
    -------------------------------------------------------------------------- */
 .stories-section { padding-block: clamp(6rem, 10vw, 8.5rem); }
 .stories-section .section-head { margin-bottom: clamp(3.5rem, 7vw, 5.5rem); }
-
-/* Scoped, quieter wallpaper for this section only: the shared
-   body.page-wallpaper .section--cream pattern (used site-wide) stays
-   completely untouched; this just raises the cream wash further on top
-   of it, purely within .stories-section, dropping the pattern to a much
-   lower visual contrast per instruction. */
-body.page-wallpaper .section--cream.stories-section {
-  background-image:
-    linear-gradient(rgba(231, 222, 205, .96), rgba(231, 222, 205, .96)),
-    url("../img/pattern-damask-cream.jpg");
-  background-image:
-    linear-gradient(rgba(231, 222, 205, .96), rgba(231, 222, 205, .96)),
-    image-set(
-      url("../img/pattern-damask-cream.webp") type("image/webp"),
-      url("../img/pattern-damask-cream.jpg") type("image/jpeg")
-    );
-}
 
 .film-triptych {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -357,30 +340,8 @@ body.page-wallpaper .section--cream.stories-section {
   max-width: 54rem; margin: 0 auto;
 }
 .film-plate { margin: 0; }
-.film-frame {
-  position: relative;
-  aspect-ratio: 9 / 16;
-  padding: 6px;
-  background: var(--cream);
-  border: 1.5px solid rgba(122, 106, 88, .6);
-  clip-path: polygon(
-    11px 0, calc(100% - 11px) 0, 100% 11px,
-    100% calc(100% - 11px), calc(100% - 11px) 100%, 11px 100%,
-    0 calc(100% - 11px), 0 11px
-  );
-}
-.film-frame::before {
-  content: "";
-  position: absolute; inset: 6px; z-index: 2; pointer-events: none;
-  border: 1px solid rgba(122, 106, 88, .32);
-  clip-path: polygon(
-    7px 0, calc(100% - 7px) 0, 100% 7px,
-    100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%,
-    0 calc(100% - 7px), 0 7px
-  );
-}
-.film-frame video {
-  position: relative; z-index: 1;
+.card__frame--film { aspect-ratio: 9 / 16; }
+.card__frame--film video {
   display: block; width: 100%; height: 100%;
   object-fit: cover; background: var(--charcoal-deep);
 }
@@ -388,13 +349,13 @@ body.page-wallpaper .section--cream.stories-section {
   position: absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 46px; height: 46px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(21,18,16,.35); border: 1px solid rgba(244,239,228,.75);
+  background: rgba(21,18,16,.45); border: 1px solid rgba(201,162,39,.55);
   color: var(--cream); cursor: pointer;
   backdrop-filter: blur(2px);
-  transition: transform .3s var(--ease), background .3s var(--ease), opacity .3s var(--ease);
+  transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), opacity .3s var(--ease);
 }
 .film-plate__play svg { width: 13px; height: 13px; margin-left: 2px; }
-.film-plate__play:hover { background: rgba(21,18,16,.55); transform: translate(-50%, -50%) scale(1.08); }
+.film-plate__play:hover { background: rgba(21,18,16,.65); border-color: var(--gold); transform: translate(-50%, -50%) scale(1.08); }
 .film-plate__play:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .film-plate__play.is-hidden { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -414,8 +375,10 @@ body.page-wallpaper .section--cream.stories-section {
 }
 @media (max-width: 560px) {
   .film-plate { flex-basis: 86%; }
-  .film-frame { padding: 5px; }
-  .film-frame::before { inset: 5px; }
+  .card__frame--film { padding: 10px; }
+  .card__frame--film::before { inset: 5px; }
+  .card__frame--film .frame-corner { width: 22px; height: 22px; }
+  .card__frame--film .frame-flourish { width: 50px; height: 16px; }
 }
 
 /* --------------------------------------------------------------------------
