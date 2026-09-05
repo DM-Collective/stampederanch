@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/main.css?v=20260826b">
 </head>
-<body>
+<body class="page-wallpaper">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <aside class="rail">
@@ -255,6 +255,36 @@
         </div>
       </article>
 
+    </div>
+  </section>
+
+  <!-- New editorial moment: authentic ranch-life photography (not a
+       rendering, not archival), tying the era-by-era history above to the
+       working ranch as it exists today. Reuses the exact same .split /
+       .card__frame components already used elsewhere on this page (see
+       the "Come See It" section below) -- no new component introduced. -->
+  <section class="section section--cream">
+    <div class="wrap split split--flip">
+      <div class="split__media" data-reveal>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/ranch-life-valley-riders-640.webp 640w, assets/img/ranch-life-valley-riders-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/ranch-life-valley-riders-1280.jpg" alt="Riders crossing the ranch valley at golden hour, foothills and mountains behind" loading="lazy" width="1280" height="853">
+          </picture>
+        </div>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <p class="eyebrow">Still the Same Land</p>
+        <h2>A Working Ranch, Not a Backdrop</h2>
+        <p class="lead">The country hasn't changed since Henry Minesinger first rode into it: open grass running
+          into timber, the foothills holding up the mountains behind. What's changed is who gets to experience it.</p>
+      </div>
     </div>
   </section>
 
