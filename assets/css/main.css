@@ -324,12 +324,18 @@ body.page-wallpaper .section--cream {
 
 /* --------------------------------------------------------------------------
    6b. Stories From the Ranch -- film triptych
-   Reuses the SAME decorative frame family as "The Ranch Experience"
-   (.card__frame, #frame-corner, #frame-flourish, rust-deep linework) via a
-   thin modifier that only adds the 9:16 aspect ratio these vertical films
-   need -- everything else (padding/parchment gap, border, double-line
-   inset, corner and flourish ornaments, color) is the exact same shared
-   component and assets used elsewhere, not a separate video-only style.
+   "Stampede Film Frame": a distinct sibling to the Ranch Experience
+   photography frame (.card__frame), sharing the same DNA (rust-deep
+   linework, delicate weight, cream parchment gap, historic-ranch
+   character) but with its own geometry so film content reads as visibly
+   its own treatment rather than a reuse:
+     - angular bracket corners (#frame-corner-film: straight lines with a
+       small stepped tick) instead of the curved scrollwork used on photos
+     - a simple line-and-diamond center accent (#rule-ornament, already
+       established elsewhere for the history timeline and quote
+       attribution) instead of the ornate photo-frame flourish
+     - an asymmetric double-line: a slightly heavier outer rule and a
+       lighter, lower-opacity inner rule, rather than two matched lines
    -------------------------------------------------------------------------- */
 .stories-section { padding-block: clamp(6rem, 10vw, 8.5rem); }
 .stories-section .section-head { margin-bottom: clamp(3.5rem, 7vw, 5.5rem); }
@@ -340,11 +346,42 @@ body.page-wallpaper .section--cream {
   max-width: 54rem; margin: 0 auto;
 }
 .film-plate { margin: 0; }
-.card__frame--film { aspect-ratio: 9 / 16; }
-.card__frame--film video {
+.film-frame {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  padding: 10px;
+  background: var(--cream);
+  border: 1.5px solid var(--rust-deep);
+  box-sizing: border-box;
+}
+.film-frame::before {
+  content: "";
+  position: absolute; inset: 5px; pointer-events: none;
+  border: 1px solid rgba(122, 59, 31, .45); /* rust-deep at reduced opacity: lighter inner rule */
+}
+.film-frame video {
+  position: relative; z-index: 1;
   display: block; width: 100%; height: 100%;
   object-fit: cover; background: var(--charcoal-deep);
 }
+.film-corner {
+  position: absolute; z-index: 2;
+  width: 22px; height: 22px;
+  color: var(--rust-deep);
+  pointer-events: none;
+}
+.film-corner--tl { top: -1px; left: -1px; }
+.film-corner--tr { top: -1px; right: -1px; transform: scaleX(-1); }
+.film-corner--bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+.film-corner--br { bottom: -1px; right: -1px; transform: scale(-1, -1); }
+.film-accent {
+  position: absolute; z-index: 2; left: 50%;
+  width: 34px; height: 18px;
+  color: var(--rust-deep);
+  pointer-events: none;
+}
+.film-accent--top { top: -1px; transform: translate(-50%, -50%); }
+.film-accent--bottom { bottom: -1px; transform: translate(-50%, 50%) scaleY(-1); }
 .film-plate__play {
   position: absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 46px; height: 46px; border-radius: 50%;
@@ -375,10 +412,10 @@ body.page-wallpaper .section--cream {
 }
 @media (max-width: 560px) {
   .film-plate { flex-basis: 86%; }
-  .card__frame--film { padding: 10px; }
-  .card__frame--film::before { inset: 5px; }
-  .card__frame--film .frame-corner { width: 22px; height: 22px; }
-  .card__frame--film .frame-flourish { width: 50px; height: 16px; }
+  .film-frame { padding: 8px; }
+  .film-frame::before { inset: 4px; }
+  .film-corner { width: 17px; height: 17px; }
+  .film-accent { width: 26px; height: 14px; }
 }
 
 /* --------------------------------------------------------------------------
