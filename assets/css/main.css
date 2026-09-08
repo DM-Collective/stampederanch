@@ -752,6 +752,12 @@ body.page-wallpaper .section--cream {
    sections. Full-bleed (used inside .section--flush). */
 .photo-cinematic { width: 100%; aspect-ratio: 21 / 9; overflow: hidden; }
 .photo-cinematic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* For portrait-sourced photography (e.g. an interior shot taller than it is
+   wide): 21/9 would crop away most of the frame's vertical content. 16/9
+   keeps roughly the same proportion of the source visible as the old
+   .photo-spread--asym main slot did, so a portrait photo used here still
+   reads as a complete, generous single image rather than a narrow sliver. */
+.photo-cinematic--tall { aspect-ratio: 16 / 9; }
 @media (max-width: 860px) {
   .photo-cinematic { aspect-ratio: 4 / 3; }
 }
