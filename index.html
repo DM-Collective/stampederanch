@@ -105,21 +105,20 @@
       <!-- Ships the 1280 cut by default; main.js swaps in the 1920 cut on large
            viewports when the connection allows. Browsers ignore `media` on
            <source> inside <video>, so the resolution swap has to happen in JS.
-           H.264 MP4 — VP9/WebM was trialled and came out no smaller on this
-           high-motion aerial footage, so it isn't worth the extra asset. -->
-      <!-- TODO: official hero asset goes here. Replace the two sources and the poster with official
-           Stampede Ranch footage when supplied — brighter than this placeholder cut, full-width,
-           cinematic, landscape-led. Keep the poster fallback, the reduced-motion handling and the
-           1280/1920 source swap in assets/js/main.js. -->
+           H.264 MP4, audio stripped (hero is a muted autoplay loop). -->
+      <!-- Official Stampede Ranch aerial footage (supplied 2026). Encoded to
+           1280 (default/mobile) and 1920 (large viewports) cuts; poster is a
+           frame from the reel. Keep the poster fallback, the reduced-motion
+           handling and the 1280/1920 source swap in assets/js/main.js. -->
       <video data-hero-video autoplay muted loop playsinline preload="metadata"
              poster="assets/video/hero-poster.jpg"
-             aria-label="Aerial footage of the Stampede Ranch in autumn, following the river through the Alberta foothills">
+             aria-label="Aerial footage of the Stampede Ranch buildings and grounds in the Alberta foothills">
         <source data-hero-source data-small="assets/video/hero-1280.mp4" data-large="assets/video/hero-1920.mp4"
                 src="assets/video/hero-1280.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero__scrim"></div>
-    <p class="hero__note">Aerial reel: Stampede Ranch drone footage, October 2023</p>
+    <p class="hero__note">Aerial reel: official Stampede Ranch footage</p>
 
     <div class="hero__inner">
       <p class="eyebrow">Longview, Alberta · Cowboy Trail · Est. 1885</p>
