@@ -1422,9 +1422,11 @@ body.page-wallpaper .section--cream {
   --focus-sm: 42% 40%;
 }
 .section--ink.section--immersive { --veil-rgb: 33,29,24; }
-/* The ranch crop is cut so the lodge sits at 20% of the frame; at narrow widths
-   cover trims the sides, so the focal point pulls left to keep it in view. */
-#full-ranch { --focus: 50% 50%; --focus-sm: 22% 50%; }
+/* The buildings sit near the centre of the frame; on desktop the right ~half
+   is veiled for the copy, so the focal point pulls left to centre the ranch
+   buildings within the visible left band. On mobile the full band shows, so
+   the focal point centres the buildings horizontally there too. */
+#full-ranch { --focus: 30% 50%; --focus-sm: 42% 50%; }
 .section--immersive > .wrap { position: relative; z-index: 2; }
 
 .immersive__media { position: absolute; inset: 0; z-index: 0; }
