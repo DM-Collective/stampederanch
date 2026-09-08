@@ -809,6 +809,19 @@ body.page-wallpaper .section--cream {
   .photo-cinematic { aspect-ratio: 4 / 3; }
 }
 
+/* Two framed editorial images side by side, natural height (does not
+   force a fixed row height/object-fit like .photo-spread--duo, since
+   .card__frame needs to size to its own image's aspect ratio). */
+.duo-framed {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 54rem; margin: 0 auto;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .duo-framed { grid-template-columns: 1fr; max-width: 26rem; }
+}
+
 /* --------------------------------------------------------------------------
    12. Pull quote
    -------------------------------------------------------------------------- */
