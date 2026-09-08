@@ -1426,7 +1426,7 @@ body.page-wallpaper .section--cream {
    is veiled for the copy, so the focal point pulls left to centre the ranch
    buildings within the visible left band. On mobile the full band shows, so
    the focal point centres the buildings horizontally there too. */
-#full-ranch { --focus: 30% 50%; --focus-sm: 42% 50%; }
+#full-ranch { --focus: 58% 50%; --focus-sm: 42% 50%; }
 .section--immersive > .wrap { position: relative; z-index: 2; }
 
 .immersive__media { position: absolute; inset: 0; z-index: 0; }
