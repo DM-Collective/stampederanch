@@ -750,8 +750,27 @@ body.page-wallpaper .section--cream {
 /* Single cinematic property photograph: one exceptional photo given
    substantial horizontal scale, used as a quiet visual pause between
    sections. Full-bleed (used inside .section--flush). */
-.photo-cinematic { width: 100%; aspect-ratio: 21 / 9; overflow: hidden; }
+.photo-cinematic { position: relative; width: 100%; aspect-ratio: 21 / 9; overflow: hidden; }
 .photo-cinematic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Optional overlay caption for a photo-cinematic section: a single line of
+   display type set into a naturally dark region of the photograph itself,
+   right-aligned, with a heavy text-shadow standing in for a scrim so no
+   veil is needed over the rest of the image. */
+.photo-cinematic__caption {
+  position: absolute; z-index: 2;
+  top: 50%; right: clamp(1.5rem, 6vw, 5rem);
+  transform: translateY(-50%);
+  max-width: 26rem; text-align: right;
+}
+.photo-cinematic__caption h2 {
+  margin: 0; color: var(--cream);
+  font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.18;
+  text-shadow: 0 2px 24px rgba(0,0,0,.6), 0 1px 4px rgba(0,0,0,.7);
+}
+@media (max-width: 860px) {
+  .photo-cinematic__caption { top: auto; bottom: 1.5rem; right: 1.25rem; transform: none; max-width: 78%; }
+  .photo-cinematic__caption h2 { font-size: clamp(1.15rem, 5vw, 1.5rem); }
+}
 /* For portrait-sourced photography (e.g. an interior shot taller than it is
    wide): 21/9 would crop away most of the frame's vertical content. 16/9
    keeps roughly the same proportion of the source visible as the old
