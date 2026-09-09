@@ -1212,7 +1212,15 @@ body.page-wallpaper .section--cream {
 }
 /* Alternating sides -- left/right assignment is CSS-only (grid-column),
    so DOM order (and so reading order / a11y / the existing data-reveal
-   fade timing per .era) is completely untouched. */
+   fade timing per .era) is completely untouched.
+   grid-row:1 on all three items is required, not decorative: without it,
+   auto-placement's sparse-packing cursor advances past row 1 once year+
+   body are placed (since they're earlier in DOM order and use columns
+   the image doesn't), so era__media would land in an auto-generated
+   row 2 below the text instead of sharing the text's own row -- which is
+   exactly what caused the image to drift toward the bottom of the section
+   instead of sitting level with its story. */
+.era__year, .era__body, .era__media { grid-row: 1; }
 .era:nth-child(odd)  .era__year { grid-column: 2; text-align: right; }
 .era:nth-child(odd)  .era__body { grid-column: 1; }
 .era:nth-child(even) .era__year { grid-column: 3; }
@@ -1220,25 +1228,24 @@ body.page-wallpaper .section--cream {
 /* The historical photo for each era sits on the OPPOSITE side of the
    spine from that era's year + written content, spanning the two grid
    columns of its half (so it reads as a substantial photograph, not a
-   thumbnail, roughly matching the width of the text column across the
-   line). era__media is a direct grid child of era__inner now (a sibling
-   of era__body, not nested inside it) purely so it can be placed
-   independently -- the image, its alt text, and its decorative frame are
-   all unchanged. */
+   thumbnail, filling essentially the same width as the text column
+   across the line). era__media is a direct grid child of era__inner now
+   (a sibling of era__body, not nested inside it) purely so it can be
+   placed independently -- the image, its alt text, and its decorative
+   frame are all unchanged. align-self:center vertically centers it
+   against the era's own row height (year + heading + body copy
+   together), so image and story move as one paired unit -- never
+   drifting into the row above or below. */
 .era:nth-child(odd)  .era__media { grid-column: 3 / 5; justify-self: start; }
 .era:nth-child(even) .era__media { grid-column: 1 / 3; justify-self: end; }
 .era__media {
   align-self: center;
-  width: min(100%, 30rem);
+  width: 100%;
   margin: 0;
 }
-/* Thoughtful, not mechanical: each photo sits a little differently
-   against its text rather than snapping to a single shared rule. */
-.era:nth-child(1) .era__media { align-self: start; margin-top: .5rem; }
-.era:nth-child(2) .era__media { align-self: start; margin-top: 3.5rem; }
-.era:nth-child(3) .era__media { align-self: end; margin-bottom: 1rem; }
-.era:nth-child(4) .era__media { align-self: center; }
-/* A little editorial irregularity rather than four identical rows */
+/* Unrelated to image alignment -- kept from the original timeline design:
+   a touch of per-era spacing variance so the four rows don't read as
+   identical repeating components. */
 .era:nth-child(2) .era__inner { padding-block: clamp(4.5rem, 10vw, 8.75rem); }
 .era:nth-child(3) .era__marker { top: clamp(2.75rem, 13vh, 8rem); }
 .era:nth-child(4) .era__inner { padding-block: clamp(3.5rem, 8vw, 7.25rem); }
