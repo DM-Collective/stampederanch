@@ -342,8 +342,8 @@ body.page-wallpaper .section--cream {
 
 .film-triptych {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: clamp(2.25rem, 4vw, 3.5rem);
-  max-width: 54rem; margin: 0 auto;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  width: 86%; margin: 0 auto;
 }
 .film-plate { margin: 0; }
 .film-frame {
@@ -400,18 +400,15 @@ body.page-wallpaper .section--cream {
   .film-plate__play:hover { transform: translate(-50%, -50%); }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 860px) {
+  /* Mobile: stack vertically rather than a horizontal-scroll carousel, so
+     each video reads at a full, legible size instead of a narrow sliver. */
   .film-triptych {
-    display: flex; gap: 1.1rem; max-width: none;
-    margin: 0 calc(-1 * var(--gutter));
-    padding: 0 var(--gutter) .5rem;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    display: grid; grid-template-columns: 1fr;
+    width: 100%; gap: 1.75rem; max-width: 26rem;
   }
-  .film-plate { flex: 0 0 78%; scroll-snap-align: start; }
 }
 @media (max-width: 560px) {
-  .film-plate { flex-basis: 86%; }
   .film-frame { padding: 8px; }
   .film-frame::before { inset: 4px; }
   .film-corner { width: 17px; height: 17px; }
