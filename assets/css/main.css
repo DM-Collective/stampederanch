@@ -1536,14 +1536,13 @@ body.page-wallpaper .section--cream {
   --focus-sm: 42% 40%;
 }
 .section--ink.section--immersive { --veil-rgb: 33,29,24; }
-/* 2026-09-08: the source photo (official-ranch-cabin) is now pre-cropped so the
-   lodge sits at the frame's true centre -- on every desktop width we tested,
-   this section's box is wide enough relative to the image that object-fit:cover
-   never has horizontal room to crop (it scales to match width exactly), so a
-   --focus x-offset had no visible effect here even though it does on other
-   immersive sections. Centring the image itself replaces the old 58%/42%
-   focus hack, which was tuned for the previous (uncropped) asset. */
-#full-ranch { --focus: 50% 50%; --focus-sm: 30% 50%; }
+/* 2026-09-09: swapped to a new photo (a symmetric street/driveway view
+   between cabins) that doesn't need the previous asset's off-center
+   compensation. Desktop's box is still wide enough relative to the image
+   that object-fit:cover shows the full width regardless of --focus (see
+   prior note), so 50/50 is just the sensible default. --focus-sm is
+   re-centered too, pending a check of the mobile crop specifically. */
+#full-ranch { --focus: 50% 50%; --focus-sm: 50% 50%; }
 .section--immersive > .wrap { position: relative; z-index: 2; }
 
 .immersive__media { position: absolute; inset: 0; z-index: 0; }
