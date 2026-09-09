@@ -1169,16 +1169,59 @@ body.page-wallpaper .section--cream {
 /* --------------------------------------------------------------------------
    20. History — scroll-driven era chapters
    -------------------------------------------------------------------------- */
-.era {
-  position: relative;
-  border-top: 1px solid var(--rule-invert);
+/* era-list: hosts the single continuous center line behind all four eras.
+   Purely a visual spine -- height comes from normal document flow (the era
+   articles stacked inside it), so it needs no JS and no fixed height. */
+.era-list { position: relative; }
+.era-list::before {
+  content: ''; position: absolute; z-index: 0;
+  top: 0; bottom: 0; left: 50%; width: 1px;
+  transform: translateX(-.5px);
+  background: linear-gradient(
+    to bottom,
+    rgba(166,82,44,0) 0%,
+    rgba(166,82,44,.4) 6%,
+    rgba(166,82,44,.4) 94%,
+    rgba(166,82,44,0) 100%
+  );
 }
+
+.era { position: relative; }
+
+/* Small engraved-medallion marker where each year meets the spine -- same
+   "thin ring around a dot" language as the homepage heritage-timeline's
+   gold ornament, in rust/copper instead of gold so it reads as this page's
+   own mark rather than a duplicate. Static per era (not scroll-linked): it
+   marks the era's place on the spine, while era__year keeps doing its own
+   sticky thing independently, exactly as before. */
+.era__marker {
+  position: absolute; z-index: 2;
+  left: 50%; top: clamp(2.5rem, 12vh, 7.5rem);
+  width: 9px; height: 9px; margin-top: -4px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--rust);
+  box-shadow: 0 0 0 4px rgba(166,82,44,.2), 0 0 0 5px rgba(21,18,16,.8);
+}
+
 .era__inner {
   display: grid;
-  grid-template-columns: 14rem 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  padding-block: clamp(3.5rem, 8vw, 7rem);
+  grid-template-columns: minmax(0,1fr) clamp(6rem,13vw,9rem) clamp(6rem,13vw,9rem) minmax(0,1fr);
+  column-gap: clamp(1.25rem, 3vw, 3rem);
+  padding-block: clamp(4rem, 9vw, 8rem);
 }
+/* Alternating sides -- left/right assignment is CSS-only (grid-column),
+   so DOM order (and so reading order / a11y / the existing data-reveal
+   fade timing per .era) is completely untouched. */
+.era:nth-child(odd)  .era__year { grid-column: 2; text-align: right; }
+.era:nth-child(odd)  .era__body { grid-column: 1; }
+.era:nth-child(even) .era__year { grid-column: 3; }
+.era:nth-child(even) .era__body { grid-column: 4; }
+/* A little editorial irregularity rather than four identical rows */
+.era:nth-child(2) .era__inner { padding-block: clamp(4.5rem, 10vw, 8.75rem); }
+.era:nth-child(3) .era__marker { top: clamp(2.75rem, 13vh, 8rem); }
+.era:nth-child(4) .era__inner { padding-block: clamp(3.5rem, 8vw, 7.25rem); }
+
 .era__year {
   position: sticky; top: clamp(2rem, 12vh, 7rem); align-self: start;
   font-family: var(--font-display);
@@ -1207,9 +1250,22 @@ body.page-wallpaper .section--cream {
 }
 
 @media (max-width: 860px) {
-  .era__inner { grid-template-columns: 1fr; }
-  .era__year { position: static; }
+  /* Single column, spine moved to the left edge, everything reads to its
+     right -- not a squeezed version of the desktop alternating layout. */
+  .era-list::before { left: 1.35rem; }
+  .era__marker { left: 1.35rem; top: clamp(1.75rem, 9vw, 2.75rem); }
+  .era__inner {
+    grid-template-columns: 1fr;
+    padding-inline-start: clamp(2.5rem, 9vw, 3.25rem);
+  }
+  .era:nth-child(odd)  .era__year,
+  .era:nth-child(even) .era__year { grid-column: 1; text-align: left; position: static; }
+  .era:nth-child(odd)  .era__body,
+  .era:nth-child(even) .era__body { grid-column: 1; }
+  .era:nth-child(2) .era__inner,
+  .era:nth-child(4) .era__inner { padding-block: clamp(4rem, 9vw, 8rem); }
 }
+
 
 /* Contact page bits */
 .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem,3vw,2.5rem); }
