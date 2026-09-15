@@ -1301,15 +1301,31 @@ body.page-wallpaper .section--cream {
     grid-template-columns: 1fr;
     padding-inline-start: clamp(2.5rem, 9vw, 3.25rem);
   }
+  /* The desktop fix above forces era__year/era__body/era__media onto the
+     same grid-row (row 1) so the image can sit level with the text across
+     the spine. At this single-column mobile layout that's exactly wrong:
+     it stacked year, title and image directly on top of each other
+     (year showing through the title). era__body becomes display:contents
+     so its own children (h3, p) become direct grid items we can place
+     individually; giving every piece its own `order` (rather than an
+     explicit grid-row number) lets normal auto-placement stack them one
+     per row in the sequence the design calls for -- year, title, image,
+     body copy -- regardless of DOM order or how many paragraphs an era
+     has, with no risk of two items landing in the same cell again. */
   .era:nth-child(odd)  .era__year,
-  .era:nth-child(even) .era__year { grid-column: 1; text-align: left; position: static; }
-  .era:nth-child(odd)  .era__body,
-  .era:nth-child(even) .era__body { grid-column: 1; }
+  .era:nth-child(even) .era__year {
+    grid-column: 1; grid-row: auto; order: 1;
+    text-align: left; position: static;
+  }
+  .era__body { display: contents; }
+  .era__body h3 { grid-column: 1; grid-row: auto; order: 2; margin-top: 1.5rem; }
   .era:nth-child(odd)  .era__media,
   .era:nth-child(even) .era__media {
-    grid-column: 1; justify-self: stretch; align-self: auto;
-    width: 100%; margin-top: 2.5rem; margin-bottom: 0;
+    grid-column: 1; grid-row: auto; order: 3;
+    justify-self: stretch; align-self: auto;
+    width: 100%; margin-top: 1.75rem; margin-bottom: 0;
   }
+  .era__body p { grid-column: 1; grid-row: auto; order: 4; margin-top: 1.5rem; }
   .era:nth-child(2) .era__inner,
   .era:nth-child(4) .era__inner { padding-block: clamp(4rem, 9vw, 8rem); }
 }
