@@ -1179,6 +1179,48 @@ body.page-wallpaper .section--cream {
 }
 
 /* --------------------------------------------------------------------------
+   Upcoming Events: homepage feature + dedicated events page
+   -------------------------------------------------------------------------- */
+/* Homepage feature: a compact editorial announcement directly below the
+   hero, reusing the existing .split / .split__media / .card__frame system
+   for layout and framing. A thin rust hairline top and bottom reads as an
+   announcement band, distinct from the regular content sections, without
+   introducing a new full chapter that competes with the hero. */
+.event-feature {
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+  border-top: 1px solid rgba(166,82,44,.25);
+  border-bottom: 1px solid rgba(166,82,44,.25);
+}
+.event-feature__meta {
+  font-family: var(--font-body); font-weight: 600;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  font-size: .8125rem; color: var(--rust-text);
+  margin-top: .5rem; margin-bottom: 1.5rem; line-height: 1.7;
+}
+.section--ink .event-feature__meta,
+.section--dark .event-feature__meta { color: rgba(244,239,228,.65); }
+
+/* Events page: hero uses the standard .hero--short pattern already in use
+   on venues/weddings/history/contact, no new hero CSS needed. The
+   featured-event presentation below reuses .section--ink for the dark
+   ranch-forest/chocolate tone plus .split for the two-column layout, and
+   adds only what's specific to an event: the date/location meta line
+   above and a simple reusable card below for when a second event is
+   eventually added. */
+.event-card {
+  display: grid; gap: .35rem;
+  padding: 1.75rem 2rem; border: 1px solid rgba(166,82,44,.3);
+  background: rgba(244,239,228,.03);
+}
+.event-card__eyebrow {
+  font-family: var(--font-body); font-weight: 600; font-size: .75rem;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--gold);
+}
+.event-card h3 { font-size: var(--fs-h3, 1.5rem); margin: 0; }
+.event-card__meta { color: rgba(244,239,228,.65); font-size: .9375rem; }
+
+/* --------------------------------------------------------------------------
    20. History — scroll-driven era chapters
    -------------------------------------------------------------------------- */
 /* era-list: hosts the single continuous center line behind all four eras.

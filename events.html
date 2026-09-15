@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Venue Booking Terms &amp; Conditions | The Stampede Ranch</title>
-<meta name="description" content="The binding terms and conditions for booking a venue at The Stampede Ranch in Longview, Alberta: assumption of risk, livestock and rodeo activities, liquor compliance, force majeure, and required vendor insurance.">
-<link rel="canonical" href="https://stampederanch.ca/terms">
+<title>Upcoming Events at The Stampede Ranch | Longview, Alberta</title>
+<meta name="description" content="Public events at The Stampede Ranch in Longview, Alberta, featuring Ride 2 Hunt on June 13, 2027.">
+<link rel="canonical" href="https://stampederanch.ca/events">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Venue Booking Terms &amp; Conditions | The Stampede Ranch">
-<meta property="og:description" content="The binding terms for booking a venue at The Stampede Ranch.">
+<meta property="og:title" content="Upcoming Events | The Stampede Ranch">
+<meta property="og:description" content="Public events at The Stampede Ranch, featuring Ride 2 Hunt on June 13, 2027.">
 <meta property="og:image" content="https://stampederanch.ca/assets/logo/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/main.css?v=20260908a">
 </head>
-<body>
+<body class="page-wallpaper">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <aside class="rail">
@@ -75,31 +75,64 @@
 <div class="shell">
 <main id="main">
 
-  <section class="section section--ink legal-head">
-    <div class="wrap" data-reveal>
-      <p class="eyebrow">Legal</p>
-      <h1>Venue Booking Terms &amp; Conditions</h1>
-      <p class="lead">By reserving or entering the premises of Stampede Ranch, the Client, its guests, and vendors agree to the following binding terms:</p>
+  <section class="hero hero--short">
+    <div class="hero__media">
+      <picture>
+        <source type="image/webp" srcset="assets/img/ranch-life-saddling-dusk-960.webp 960w, assets/img/ranch-life-saddling-dusk-1920.webp 1920w" sizes="100vw">
+        <img src="assets/img/ranch-life-saddling-dusk-1920.jpg" alt="A cowboy saddling a horse at dusk, foothills behind" width="1920" height="1280" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="hero__scrim"></div>
+    <div class="hero__inner">
+      <p class="eyebrow">The Stampede Ranch</p>
+      <h1 class="display">Upcoming<br>Events</h1>
+      <p class="hero__sub lead-italic">Public events on the ranch, arranged around the land, the animals and the season.</p>
     </div>
   </section>
 
+  <!-- INTRO -->
   <section class="section">
-    <div class="wrap">
-      <div class="legal" data-reveal>
-        <h2>1. ASSUMPTION OF RISK &amp; OCCUPIERS' LIABILITY</h2>
-        <p>Stampede Ranch is situated on rural property containing indoor, outdoor, agricultural, and rustic structures. The Client and its guests voluntarily enter the premises and assume all risks associated with rural terrain, weather exposure, uneven surfaces, and natural hazards. Stampede Ranch operates in full compliance with applicable provincial Occupiers' Liability legislation. Stampede Ranch, its owners, officers, and staff shall not be liable for personal injury, property damage, or loss incurred on the premises except where directly caused by the gross negligence or willful misconduct of Stampede Ranch.</p>
-        <h2>2. HIGH-RISK ACTIVITIES, LIVESTOCK, &amp; RODEO DISCLAIMER</h2>
-        <p>Events involving equestrian activities, rodeos, livestock demonstrations, or interactions with animals inherently involve risk of physical injury, property damage, or death. Stampede Ranch enforces strict safety protocols; however, all attendees, participants, vendors, and spectators participate in or observe such activities at their own risk. Stampede Ranch explicitly disclaims liability for animal behavior or injuries arising from unauthorized interaction with livestock or access to restricted venue areas.</p>
-        <h2>3. LIQUOR COMPLIANCE &amp; INDEMNIFICATION</h2>
-        <p>The Client agrees to comply fully with all applicable provincial liquor laws, including securing necessary Special Event Permits and ensuring servers hold required provincial certifications. Stampede Ranch reserves the right to terminate alcohol service or require the removal of any guest exhibiting unsafe, unlawful, or excessively intoxicated behavior. The Client agrees to indemnify and hold harmless Stampede Ranch from any liability, fines, claims, or damages arising from alcohol consumption, guest intoxication, or non-compliance with provincial liquor regulations during the event.</p>
-        <h2>4. FORCE MAJEURE &amp; EXTREME WEATHER</h2>
-        <p>Stampede Ranch shall not be held liable or responsible for failure to perform its contractual obligations if such failure arises from acts of God, extreme weather events (including severe storms, blizzards, wildfire smoke, or heat warnings), fire, flood, power outages, municipal infrastructure failure, strikes, labor disputes, epidemics, or government restrictions beyond reasonable control. In such events, Stampede Ranch will work with the Client in good faith to reschedule the event subject to availability, but shall not be responsible for consequential or indirect losses.</p>
-        <h2>5. REQUIRED VENDOR INSURANCE</h2>
-        <p>All third-party vendors engaged by the Client (including caterers, decorators, entertainment, and equipment suppliers) must be approved by Stampede Ranch prior to the event. The Client must ensure that all external vendors provide a valid Certificate of Insurance (COI) demonstrating Commercial General Liability coverage of no less than $2,000,000 CAD per occurrence, naming &ldquo;Stampede Ranch&rdquo; as an Additional Insured, no later than 14 days prior to the event date.</p>
+    <div class="wrap story measure center" data-reveal>
+      <p class="eyebrow">Featured Event</p>
+      <h2>Something Special Is Happening at the Ranch</h2>
+      <p class="lead">The Stampede Ranch hosts a small number of public events each year, held on the same working
+        land as our private rentals. Right now, that means one date on the calendar.</p>
+    </div>
+  </section>
 
-        <p class="legal__meta">Last updated August 2026. These terms form part of your booking agreement with
-          Stampede Ranch. Questions about any clause can go to the ranch team before you confirm a date.</p>
-        <p style="margin-top:2rem"><a class="link-arrow" href="venues.html#availability">Back to booking &rarr;</a></p>
+  <!-- ============================ FEATURED: RIDE 2 HUNT ============================ -->
+  <!-- Reusable event structure: name, date, location, image, short
+       description, external or internal CTA. When a second public event
+       is confirmed, it can follow this same section pattern (or use the
+       compact .event-card component defined in main.css) rather than
+       forcing a card grid while only one real event exists. -->
+  <section class="section section--ink">
+    <div class="wrap split split--flip">
+      <div class="split__media" data-reveal>
+        <div class="card__frame">
+          <svg class="frame-corner frame-corner--tl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--tr" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--bl" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-corner frame-corner--br" aria-hidden="true" focusable="false"><use href="#frame-corner"/></svg>
+          <svg class="frame-flourish frame-flourish--top" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <svg class="frame-flourish frame-flourish--bottom" aria-hidden="true" focusable="false"><use href="#frame-flourish"/></svg>
+          <picture>
+            <source type="image/webp" srcset="assets/img/official-arena-640.webp 640w, assets/img/official-arena-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw">
+            <img src="assets/img/official-arena-1280.jpg" alt="Riders gathered in the ranch's outdoor arena, bleachers and flags behind" loading="lazy" width="1280" height="960">
+          </picture>
+        </div>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <p class="eyebrow eyebrow--gold">Primary Featured Event</p>
+        <h2>Ride 2 Hunt</h2>
+        <p class="event-feature__meta">June 13, 2027<br>The Stampede Ranch, Longview, Alberta</p>
+        <p class="lead">An unforgettable afternoon where the adrenaline of the ride meets the thrill of the hunt.
+          Ride 2 Hunt brings saddle bronc riding to the ranch for one day, held on the same grounds as our private
+          events.</p>
+        <p>Full event details, competitors and tickets are handled on the official Ride 2 Hunt site.</p>
+        <div class="hero__actions" style="margin-top:2rem">
+          <a class="btn btn--gold" href="https://www.ride2hunt.com/" target="_blank" rel="noopener noreferrer">Explore Ride 2 Hunt</a>
+        </div>
       </div>
     </div>
   </section>
