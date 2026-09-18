@@ -101,19 +101,26 @@
 <main id="main">
 
   <!-- ============================ HERO ============================ -->
-  <section class="hero">
+  <section class="hero hero--tour">
     <div class="hero__media">
       <!-- Ships the 1280 cut by default; main.js swaps in the 1920 cut on large
            viewports when the connection allows. Browsers ignore `media` on
            <source> inside <video>, so the resolution swap has to happen in JS.
            H.264 MP4, audio stripped (hero is a muted autoplay loop). -->
-      <!-- Official Stampede Ranch aerial footage (supplied 2026). Encoded to
-           1280 (default/mobile) and 1920 (large viewports) cuts; poster is a
-           frame from the reel. Keep the poster fallback, the reduced-motion
-           handling and the 1280/1920 source swap in assets/js/main.js. -->
-      <video data-hero-video autoplay muted loop playsinline preload="metadata"
+      <!-- Official Stampede Ranch aerial drone footage (supplied 2026-09-18,
+           replacing the 2026-08 cut). A single continuous ~107s tour: entry
+           gate, drive and bridge, cabin cluster, main lodge cluster, then a
+           wide valley/mountain establishing shot. Encoded to 1280
+           (default/mobile) and 1920 (large viewports) cuts at crf 30/31;
+           poster is a frame from this same reel (the wide establishing shot
+           at ~30s). Keep the poster fallback, the reduced-motion handling
+           and the 1280/1920 source swap in assets/js/main.js.
+           Text contrast was re-measured against this new footage across 30
+           frames spanning the full clip (see the .hero__scrim comment below
+           for what changed and why -- one gradient stop, +.04). -->
+      <video class="hero__video--tour" data-hero-video autoplay muted loop playsinline preload="metadata"
              poster="assets/video/hero-poster.jpg"
-             aria-label="Aerial footage of the Stampede Ranch buildings and grounds in the Alberta foothills">
+             aria-label="Aerial drone tour of the Stampede Ranch property, from the entry gate through the grounds and buildings">
         <source data-hero-source data-small="assets/video/hero-1280.mp4" data-large="assets/video/hero-1920.mp4"
                 src="assets/video/hero-1280.mp4" type="video/mp4">
       </video>

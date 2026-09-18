@@ -432,6 +432,21 @@ body.page-wallpaper .section--cream {
 .hero__media video, .hero__media img {
   width: 100%; height: 100%; object-fit: cover;
 }
+/* Mobile art direction for the new hero tour video only (scoped to this one
+   class so index-hero-b.html's separate hero2 video, and every other page's
+   hero--short image, are unaffected). At a narrow portrait viewport,
+   object-fit:cover on 16:9 footage keeps only the center ~26% of the frame's
+   width -- checked against 7 frames spanning the clip (gate, drive/bridge,
+   cabin, lodge, wide valley shot): dead-center crops the opening gate frame
+   so the "Stampede Ranch" sign is cut down to two letters, while a modest
+   left shift keeps that sign fully in frame and still reads well on every
+   other sampled frame (the valley shot at ~90s loses the distant windmill/
+   bridge at this position but keeps the lit lodge building, still a strong
+   frame). Desktop is left at the default center: its wider aspect crops far
+   less of the frame regardless of position, so there's nothing to fix there. */
+@media (max-width: 860px) {
+  .hero__media video.hero__video--tour { object-position: 35% 50%; }
+}
 /* The scrim earns its keep only where type sits: a pool across the bottom-left
    text block, and as little as possible over the landscape.
    These stops are the result of measuring WCAG contrast for every hero text
@@ -440,13 +455,43 @@ body.page-wallpaper .section--cream {
    eyebrow 4.92:1, H1 6.04:1, subhead 11.98:1, opening 9.53:1, scroll 15.12:1,
    reel note 6.03:1 (small text needs 4.5:1; the H1 is large text, needs 3:1).
    The eyebrow is the binding constraint — the .52 stop at 68% exists solely to
-   hold it, so re-measure rather than eyeball if you loosen anything here. */
+   hold it, so re-measure rather than eyeball if you loosen anything here.
+   2026-09-18: swapped in a new, much longer (107s) hero video with brighter,
+   hazier sky in several stretches. Re-measured contrast programmatically
+   across 30 frames spanning the full clip (not just the opening frame, since
+   this footage's light/dark balance shifts a lot more over its length than
+   the old ~19s loop's did). The eyebrow dipped to 4.41-4.42:1 (just under the
+   4.5:1 floor) at two of those sample points, where sky/field now falls right
+   in the 60% stop's .40 "window" left open for the old footage. Raised that
+   one stop from .40 to .44 -- the minimal bump that clears 4.5:1 at every
+   sampled frame (worst case after the fix: 4.63:1) without darkening the rest
+   of the gradient. Every other stop is unchanged from the 2026-08-26 tuning. */
 .hero__scrim {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.58) 38%, rgba(21,18,16,.40) 60%, rgba(21,18,16,.52) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
+    linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.58) 38%, rgba(21,18,16,.44) 60%, rgba(21,18,16,.52) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
     linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
     radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
+}
+/* Mobile needs its own, slightly stronger pass: at the 35%-shifted mobile
+   focal point (see .hero__video--tour above), the same 24-27s bright-sky
+   stretch samples an even lighter pixel than it does at desktop's centered
+   position. Scoped to .hero--tour only, so no other page's .hero__scrim is
+   touched. Re-measured programmatically the same way: with these two stops
+   raised, only that one ~3s window remains under 4.5:1 (worst case ~3.4:1,
+   up from 3.01:1 unfixed). Getting that specific window the rest of the way
+   to 4.5:1 would need pushing these stops hard enough to read as heavily
+   darkening the footage there, which the brief for this video explicitly
+   rules out -- so this is the deliberate stopping point, not an oversight.
+   If that residual dip matters in practice, the real fix is upstream: trim
+   or re-grade that few seconds of source footage, not more scrim. */
+@media (max-width: 860px) {
+  .hero--tour .hero__scrim {
+    background:
+      linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.58) 38%, rgba(21,18,16,.48) 60%, rgba(21,18,16,.58) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
+      linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
+      radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
+  }
 }
 
 .hero__inner { position: relative; z-index: 2; width: 100%; max-width: 62rem; }
