@@ -121,7 +121,7 @@
           planning: availability, the shape of the experience, and everything needed to finalise a reservation.</p>
       </div>
 
-      <form class="form" data-demo-form data-reveal>
+      <form class="form" data-demo-form data-form-type="contact" data-reveal>
         <div class="form__row">
           <div class="field">
             <label for="c-name">Full name</label>
@@ -156,8 +156,7 @@
         </div>
         <p class="form__note">Submitting this form is a request only and does not create or guarantee a reservation.
           All bookings are subject to availability, ranch approval, and completion of the required agreements and
-          documentation. By submitting you agree to be contacted about your inquiry. Prototype only: nothing is
-          stored or sent.</p>
+          documentation. By submitting you agree to be contacted about your inquiry.</p>
         <p><button class="btn btn--ink" type="submit">Start an Inquiry</button></p>
         <p class="form-status" role="status" tabindex="-1" data-form-status hidden></p>
       </form>
@@ -274,7 +273,7 @@
     </div>
     <div>
       <h3>Stay in Touch</h3>
-      <form class="footer__signup" data-demo-form>
+      <form class="footer__signup" data-demo-form data-form-type="newsletter">
         <label class="visually-hidden" for="footer-email">Your email address</label>
         <input id="footer-email" type="email" name="email" placeholder="Your email address" required>
         <button type="submit">Join</button>

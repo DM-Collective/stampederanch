@@ -113,23 +113,81 @@
   }
 
   /* ---------------------------------------------------------------
-     Inquiry forms — prototype only.
-     In the WordPress build these post to Gravity Forms / WS Form and
-     on into the CRM. Here we intercept and confirm inline so the
-     flow can be reviewed end to end.
+     Inquiry forms — live, backed by /api/send-email (Resend).
+     Every [data-demo-form] posts its fields as JSON to the serverless
+     function, which relays it to info@stampederanch.ca. data-form-type
+     on each form ("contact" | "venues" | "weddings" | "newsletter")
+     tells the function which kind of submission it is, for the subject
+     line and email formatting; it does not change what's sent otherwise.
+     The "-demo-form" attribute name is legacy from the prototype phase
+     and is kept only so no HTML needs to change beyond adding
+     data-form-type; it no longer means the form is a demo.
      --------------------------------------------------------------- */
   Array.prototype.forEach.call(document.querySelectorAll('[data-demo-form]'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      var status = form.querySelector('[data-form-status]');
+
+      var status = form.querySelector('[data-form-status]') ||
+        (form.parentElement && form.parentElement.querySelector('[data-form-status]'));
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var formType = form.getAttribute('data-form-type') || 'contact';
+      var originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+      var fields = {};
+      var formData = new FormData(form);
+      formData.forEach(function (value, key) {
+        // Checkboxes (e.g. the terms checkbox) submit "on"; report a plain
+        // yes rather than the raw browser value.
+        fields[key] = value === 'on' ? 'Yes' : value;
+      });
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
       if (status) {
         status.hidden = false;
-        status.textContent =
-          'Thank you — your inquiry has been received. A member of the ranch team will be in touch within one business day. (Prototype: no data was sent.)';
-        status.focus();
+        status.textContent = 'Sending your request…';
       }
-      form.reset();
+
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: formType, fields: fields, pageUrl: window.location.href })
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { ok: res.ok && data.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+          if (!status) { if (result.ok) form.reset(); return; }
+          if (result.ok) {
+            status.textContent = formType === 'newsletter'
+              ? 'Thanks for joining — you\u2019re on the list.'
+              : 'Thank you — your inquiry has been received. A member of the ranch team will be in touch within one business day.';
+            form.reset();
+          } else {
+            status.textContent = 'Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.';
+          }
+          status.focus();
+        })
+        .catch(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+          if (status) {
+            status.hidden = false;
+            status.textContent = 'Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.';
+            status.focus();
+          }
+        });
     });
   });
 

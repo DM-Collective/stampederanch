@@ -335,7 +335,7 @@
           availability, the wedding guide, and a hold on the weekend if it's open.</p>
       </div>
 
-      <form class="form" data-demo-form data-reveal>
+      <form class="form" data-demo-form data-form-type="weddings" data-reveal>
         <div class="form__row">
           <div class="field">
             <label for="w-name1">Your name</label>
@@ -393,8 +393,7 @@
         </div>
         <p class="form__note">Submitting this form is a request for availability only and does not create or
           guarantee a reservation. All bookings are subject to availability, ranch approval, and completion of the
-          required agreements and documentation. By submitting you agree to be contacted about your request.
-          Prototype only: nothing is stored or sent.</p>
+          required agreements and documentation. By submitting you agree to be contacted about your request.</p>
         <p><button class="btn btn--ink" type="submit">Submit Request</button></p>
         <p class="form-status" role="status" tabindex="-1" data-form-status hidden></p>
       </form>
@@ -438,7 +437,7 @@
     </div>
     <div>
       <h3>Stay in Touch</h3>
-      <form class="footer__signup" data-demo-form>
+      <form class="footer__signup" data-demo-form data-form-type="newsletter">
         <label class="visually-hidden" for="footer-email">Your email address</label>
         <input id="footer-email" type="email" name="email" placeholder="Your email address" required>
         <button type="submit">Join</button>
