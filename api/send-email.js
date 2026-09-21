@@ -6,19 +6,20 @@
 // relays it to info@stampederanch.ca via Resend, using the RESEND_KEY
 // environment variable already set in the Vercel project (production only).
 //
-// Sends FROM onboarding@resend.dev (Resend's own shared sending address,
-// which works without any domain verification) rather than an
-// @stampederanch.ca address, since we don't know whether that domain has
-// been verified in Resend yet. The submitter's own email is set as
-// reply_to, so replying to the notification email goes straight back to
-// them regardless of the from address. If stampederanch.ca is (or becomes)
-// a verified Resend domain, swap FROM_ADDRESS below for a branded address.
+// Sends FROM inquiries.stampederanch.ca, a verified Resend sending domain
+// (2026-09-21). Previously used onboarding@resend.dev (Resend's shared
+// testing address), but Resend only allows that address to send to the
+// account's own email, not to info@stampederanch.ca -- confirmed via a
+// 403 "You can only send testing emails to your own email address" error
+// in the runtime logs on first real test. The submitter's own email is
+// still set as reply_to, so replying to the notification email goes
+// straight back to them regardless of the from address.
 //
 // Expected request body: { formType: string, fields: { ...form fields }, pageUrl?: string }
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const TO_ADDRESS = 'info@stampederanch.ca';
-const FROM_ADDRESS = 'The Stampede Ranch Website <onboarding@resend.dev>';
+const FROM_ADDRESS = 'The Stampede Ranch <noreply@inquiries.stampederanch.ca>';
 
 const FORM_LABELS = {
   contact: 'General Inquiry',
