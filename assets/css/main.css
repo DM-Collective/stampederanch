@@ -211,7 +211,13 @@ p:last-child { margin-bottom: 0; }
   transition: opacity .25s var(--ease);
 }
 .rail__mark:hover { opacity: .75; }
-.rail__mark img { width: 60px; height: auto; }
+/* width recalculated for the new mark's aspect ratio (2026-09) so its
+   displayed HEIGHT matches the previous mark's ~122px (60px wide at the
+   old 47:96 aspect) -- the new artwork is proportionally wider/shorter,
+   so keeping the old fixed width of 60px made it display noticeably
+   smaller than before even though the file itself is correctly
+   proportioned. */
+.rail__mark img { width: 84px; height: auto; }
 
 .rail__toggle {
   width: 44px; height: 44px;
