@@ -1081,6 +1081,16 @@ body.page-wallpaper .section--cream {
 }
 .field textarea { min-height: 9rem; resize: vertical; }
 .form__note { font-size: var(--fs-micro); color: var(--ink-soft); }
+/* Honeypot: a bait field bots fill in and real visitors never see or reach.
+   aria-hidden removes it from the accessibility tree entirely (not just
+   visually hidden -- a screen reader user never lands on it), and
+   tabindex="-1" keeps it out of the keyboard tab order. Off-screen
+   positioning rather than display:none/visibility:hidden, since some
+   older bots specifically skip fields hidden that way. */
+.hp-field { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+/* Turnstile's widget has its own chrome; just give it the same rhythm as
+   the rest of the form rather than restyling it. */
+.cf-turnstile { margin-top: .25rem; }
 .form-status {
   padding: 1rem 1.25rem; background: var(--sage-deep); color: var(--cream);
   font-size: var(--fs-small);
@@ -1112,7 +1122,11 @@ body.page-wallpaper .section--cream {
   font-size: 10px; font-weight: 600; letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
-.footer__signup { display: flex; border: 1px solid rgba(244,239,228,.25); }
+/* .footer__signup is the <form> itself; the actual bordered input+button
+   pill lives in .footer__signup__row (a plain child wrapper) so a
+   Turnstile widget can sit below that row, inside the same form, without
+   visually joining the pill's border. */
+.footer__signup__row { display: flex; border: 1px solid rgba(244,239,228,.25); }
 .footer__signup input {
   flex: 1; min-width: 0; background: none; border: 0; color: var(--cream);
   padding: .85rem 1rem; font: inherit; font-size: var(--fs-small);

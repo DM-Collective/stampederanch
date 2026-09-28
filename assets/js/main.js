@@ -113,17 +113,76 @@
   }
 
   /* ---------------------------------------------------------------
-     Inquiry forms — live, backed by /api/send-email (Resend).
+     Turnstile setup.
+     TURNSTILE_SITE_KEY is a PLACEHOLDER -- Turnstile site keys are meant
+     to be public (they're not secrets), so hardcoding it here once
+     Cloudflare issues one is the normal, correct approach for a static
+     site with no server-side templating. Until then, widgets render in
+     Cloudflare's own "invalid sitekey" test state and the server-side
+     check in /api/send-email will reject submissions (see that file),
+     so nothing insecure ships in the meantime.
+     Rendered explicitly (not via Turnstile's auto-render scan) so we
+     control exactly when each widget appears and can reset it after
+     each submission; explicit render also still auto-injects a hidden
+     "cf-turnstile-response" input inside each container, so the existing
+     FormData-based form handler below picks up the token with no other
+     changes needed.
+     --------------------------------------------------------------- */
+  var TURNSTILE_SITE_KEY = 'REPLACE_WITH_TURNSTILE_SITE_KEY';
+  var turnstileWidgetIds = new WeakMap(); // form -> widgetId, for reset()
+
+  // Turnstile's api.js loads with `async`, so it can finish (and try to
+  // fire its onload callback) before this deferred script has even run --
+  // there's no guaranteed ordering between an async script and a deferred
+  // one. A tiny inline stub in <head> (see every page's <head>) defines
+  // window.onTurnstileLoad synchronously during HTML parsing, before any
+  // async/deferred script can execute, and sets a ready flag if Turnstile
+  // calls it first. Here we do the actual rendering work, and check that
+  // flag in case we're the one arriving second.
+  window.__turnstileRenderAll = function () {
+    // Until the real site key replaces the placeholder, don't attempt to
+    // render at all -- Cloudflare shows a visible "invalid sitekey" error
+    // box for a bad key, which is exactly the un-premium, alarming UI this
+    // project should never show a real visitor. Forms simply submit with
+    // no token in the meantime, which the server correctly treats as an
+    // unverified submission (see api/send-email.js) -- fails closed, not
+    // open, and with nothing broken-looking on the page.
+    if (TURNSTILE_SITE_KEY.indexOf('REPLACE_WITH') === 0) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.cf-turnstile'), function (container) {
+      var form = container.closest('form');
+      if (!form || typeof window.turnstile === 'undefined') return;
+      var widgetId = window.turnstile.render(container, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'light',
+        size: 'compact'
+      });
+      turnstileWidgetIds.set(form, widgetId);
+    });
+  };
+  if (window.__turnstileApiReady) { window.__turnstileRenderAll(); }
+
+  /* ---------------------------------------------------------------
+     Inquiry forms — live, backed by /api/send-email (Resend), fronted
+     by Turnstile + a honeypot + a submission-timing check, all verified
+     server-side (see /api/send-email.js -- nothing here is trusted on
+     its own).
      Every [data-demo-form] posts its fields as JSON to the serverless
-     function, which relays it to info@stampederanch.ca. data-form-type
-     on each form ("contact" | "venues" | "weddings" | "newsletter")
-     tells the function which kind of submission it is, for the subject
-     line and email formatting; it does not change what's sent otherwise.
+     function. data-form-type on each form ("contact" | "venues" |
+     "weddings" | "newsletter") tells the function which kind of
+     submission it is, for the subject line and email formatting; it
+     does not change what's sent otherwise.
      The "-demo-form" attribute name is legacy from the prototype phase
      and is kept only so no HTML needs to change beyond adding
      data-form-type; it no longer means the form is a demo.
      --------------------------------------------------------------- */
   Array.prototype.forEach.call(document.querySelectorAll('[data-demo-form]'), function (form) {
+    // Stamp a render timestamp the moment each form is wired up, so the
+    // server can sanity-check "how long between page load and submit"
+    // without penalizing password managers (which still take a beat
+    // before the user clicks submit) -- see the threshold server-side.
+    var tsField = form.querySelector('[data-form-ts]');
+    if (tsField) tsField.value = String(Date.now());
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -135,12 +194,37 @@
       var originalBtnText = submitBtn ? submitBtn.textContent : '';
 
       var fields = {};
+      var turnstileToken = '';
+      var honeypotValue = '';
       var formData = new FormData(form);
       formData.forEach(function (value, key) {
+        if (key === 'cf-turnstile-response') { turnstileToken = value; return; }
+        if (key === 'website') { honeypotValue = value; return; }
+        if (key === '_ts') { return; } // sent separately as submittedAt
         // Checkboxes (e.g. the terms checkbox) submit "on"; report a plain
         // yes rather than the raw browser value.
         fields[key] = value === 'on' ? 'Yes' : value;
       });
+
+      function resetTurnstile() {
+        var widgetId = turnstileWidgetIds.get(form);
+        if (widgetId !== undefined && window.turnstile) {
+          window.turnstile.reset(widgetId);
+        }
+      }
+
+      function showError(message) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+        resetTurnstile();
+        if (status) {
+          status.hidden = false;
+          status.textContent = message;
+          status.focus();
+        }
+      }
 
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -154,11 +238,18 @@
       fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formType: formType, fields: fields, pageUrl: window.location.href })
+        body: JSON.stringify({
+          formType: formType,
+          fields: fields,
+          pageUrl: window.location.href,
+          turnstileToken: turnstileToken,
+          website: honeypotValue,
+          submittedAt: tsField ? tsField.value : ''
+        })
       })
         .then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (data) {
-            return { ok: res.ok && data.ok, data: data };
+            return { httpOk: res.ok, data: data };
           });
         })
         .then(function (result) {
@@ -166,27 +257,25 @@
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
           }
-          if (!status) { if (result.ok) form.reset(); return; }
-          if (result.ok) {
-            status.textContent = formType === 'newsletter'
-              ? 'Thanks for joining — you\u2019re on the list.'
-              : 'Thank you — your inquiry has been received. A member of the ranch team will be in touch within one business day.';
+          if (result.data && result.data.ok) {
+            if (status) {
+              status.textContent = formType === 'newsletter'
+                ? 'Thanks for joining — you\u2019re on the list.'
+                : 'Thank you — your inquiry has been received. A member of the ranch team will be in touch within one business day.';
+              status.focus();
+            }
             form.reset();
-          } else {
-            status.textContent = 'Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.';
+            resetTurnstile();
+            return;
           }
-          status.focus();
+          if (result.data && result.data.code === 'verification_failed') {
+            showError('We couldn\u2019t verify your submission. Please try again.');
+            return;
+          }
+          showError('Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.');
         })
         .catch(function () {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-          }
-          if (status) {
-            status.hidden = false;
-            status.textContent = 'Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.';
-            status.focus();
-          }
+          showError('Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.');
         });
     });
   });

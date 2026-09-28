@@ -142,9 +142,17 @@
     <div>
       <h3>Stay in Touch</h3>
       <form class="footer__signup" data-demo-form data-form-type="newsletter">
-        <label class="visually-hidden" for="footer-email">Your email address</label>
-        <input id="footer-email" type="email" name="email" placeholder="Your email address" required>
-        <button type="submit">Join</button>
+        <div class="footer__signup__row">
+          <label class="visually-hidden" for="footer-email">Your email address</label>
+          <input id="footer-email" type="email" name="email" placeholder="Your email address" required>
+          <button type="submit">Join</button>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="footer-website">Leave this field empty</label>
+          <input type="text" id="footer-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="_ts" data-form-ts value="">
+        <div class="cf-turnstile" data-form-turnstile></div>
       </form>
       <p role="status" data-form-status hidden style="margin-top:1rem;font-size:.75rem"></p>
     </div>
@@ -156,6 +164,8 @@
 </footer>
 </div>
 
+<script>window.onTurnstileLoad = function () { window.__turnstileApiReady = true; if (typeof window.__turnstileRenderAll === "function") { window.__turnstileRenderAll(); } };</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad" async defer></script>
 <script src="assets/js/main.js?v=20260908a" defer></script>
 </body>
 </html>
