@@ -200,6 +200,7 @@ async function verifyTurnstile(token, ip) {
     return { ok: false, reason: 'not_configured' };
   }
   if (!token || typeof token !== 'string') {
+    console.error('Turnstile verification called with no token (widget likely did not finish, or was never rendered).');
     return { ok: false, reason: 'missing_token' };
   }
 

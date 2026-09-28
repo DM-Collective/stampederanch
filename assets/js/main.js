@@ -180,6 +180,13 @@
     var tsField = form.querySelector('[data-form-ts]');
     if (tsField) tsField.value = String(Date.now());
 
+    // Reads the current cf-turnstile-response value straight from the DOM
+    // (not a stale FormData snapshot), so callers can poll it.
+    function readTurnstileToken() {
+      var input = form.querySelector('input[name="cf-turnstile-response"]');
+      return input ? input.value : '';
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -189,19 +196,6 @@
       var submitBtn = form.querySelector('button[type="submit"]');
       var formType = form.getAttribute('data-form-type') || 'contact';
       var originalBtnText = submitBtn ? submitBtn.textContent : '';
-
-      var fields = {};
-      var turnstileToken = '';
-      var honeypotValue = '';
-      var formData = new FormData(form);
-      formData.forEach(function (value, key) {
-        if (key === 'cf-turnstile-response') { turnstileToken = value; return; }
-        if (key === 'website') { honeypotValue = value; return; }
-        if (key === '_ts') { return; } // sent separately as submittedAt
-        // Checkboxes (e.g. the terms checkbox) submit "on"; report a plain
-        // yes rather than the raw browser value.
-        fields[key] = value === 'on' ? 'Yes' : value;
-      });
 
       function resetTurnstile() {
         var widgetId = turnstileWidgetIds.get(form);
@@ -223,16 +217,29 @@
         }
       }
 
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending…';
-      }
-      if (status) {
-        status.hidden = false;
-        status.textContent = 'Sending your request…';
-      }
+      if (submitBtn) { submitBtn.disabled = true; }
 
-      fetch('/api/send-email', {
+      function doSend() {
+        var fields = {};
+        var turnstileToken = readTurnstileToken();
+        var honeypotValue = '';
+        var formData = new FormData(form);
+        formData.forEach(function (value, key) {
+          if (key === 'cf-turnstile-response') { return; } // read fresh above instead
+          if (key === 'website') { honeypotValue = value; return; }
+          if (key === '_ts') { return; } // sent separately as submittedAt
+          // Checkboxes (e.g. the terms checkbox) submit "on"; report a plain
+          // yes rather than the raw browser value.
+          fields[key] = value === 'on' ? 'Yes' : value;
+        });
+
+        if (submitBtn) { submitBtn.textContent = 'Sending…'; }
+        if (status) {
+          status.hidden = false;
+          status.textContent = 'Sending your request…';
+        }
+
+        fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -274,6 +281,39 @@
         .catch(function () {
           showError('Something went wrong sending your request. Please try again, or email us directly at info@stampederanch.ca.');
         });
+      }
+
+      // Turnstile's managed check usually completes near-instantly, but on
+      // a very fast submission (or a slow network to Cloudflare) the token
+      // may not exist yet the moment the user clicks submit. Rather than
+      // sending an empty token and failing with a confusing "couldn't
+      // verify" message, wait briefly for it to appear.
+      if (readTurnstileToken()) {
+        doSend();
+      } else if (typeof window.turnstile === 'undefined') {
+        // Turnstile never loaded at all (blocked, offline, script error) --
+        // sending anyway lets the server give its normal, honest
+        // verification_failed response rather than hanging here forever.
+        doSend();
+      } else {
+        if (status) {
+          status.hidden = false;
+          status.textContent = 'Verifying your browser, one moment…';
+        }
+        var waited = 0;
+        var pollMs = 200;
+        var maxWaitMs = 3000;
+        var poll = setInterval(function () {
+          waited += pollMs;
+          if (readTurnstileToken()) {
+            clearInterval(poll);
+            doSend();
+          } else if (waited >= maxWaitMs) {
+            clearInterval(poll);
+            doSend(); // let the server give its normal verification_failed response
+          }
+        }, pollMs);
+      }
     });
   });
 
