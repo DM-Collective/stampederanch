@@ -114,13 +114,13 @@
 
   /* ---------------------------------------------------------------
      Turnstile setup.
-     TURNSTILE_SITE_KEY is a PLACEHOLDER -- Turnstile site keys are meant
-     to be public (they're not secrets), so hardcoding it here once
-     Cloudflare issues one is the normal, correct approach for a static
-     site with no server-side templating. Until then, widgets render in
-     Cloudflare's own "invalid sitekey" test state and the server-side
-     check in /api/send-email will reject submissions (see that file),
-     so nothing insecure ships in the meantime.
+     TURNSTILE_SITE_KEY is the real widget key (Managed mode, widget
+     "Stampede Ranch website", hostnames stampederanch.ca /
+     www.stampederanch.ca), added 2026-09-22. Site keys are meant to be
+     public (they're not secrets), so hardcoding it here is the normal,
+     correct approach for a static site with no server-side templating.
+     The matching secret key lives only in Vercel as TURNSTILE_SECRET_KEY
+     (production), read server-side in /api/send-email.js -- never here.
      Rendered explicitly (not via Turnstile's auto-render scan) so we
      control exactly when each widget appears and can reset it after
      each submission; explicit render also still auto-injects a hidden
@@ -128,7 +128,7 @@
      FormData-based form handler below picks up the token with no other
      changes needed.
      --------------------------------------------------------------- */
-  var TURNSTILE_SITE_KEY = 'REPLACE_WITH_TURNSTILE_SITE_KEY';
+  var TURNSTILE_SITE_KEY = '0x4AAAAAAFHKOe8k9oqniyZb';
   var turnstileWidgetIds = new WeakMap(); // form -> widgetId, for reset()
 
   // Turnstile's api.js loads with `async`, so it can finish (and try to
@@ -140,13 +140,10 @@
   // calls it first. Here we do the actual rendering work, and check that
   // flag in case we're the one arriving second.
   window.__turnstileRenderAll = function () {
-    // Until the real site key replaces the placeholder, don't attempt to
-    // render at all -- Cloudflare shows a visible "invalid sitekey" error
-    // box for a bad key, which is exactly the un-premium, alarming UI this
-    // project should never show a real visitor. Forms simply submit with
-    // no token in the meantime, which the server correctly treats as an
-    // unverified submission (see api/send-email.js) -- fails closed, not
-    // open, and with nothing broken-looking on the page.
+    // Defensive no-op now that the real site key is in place above; kept
+    // so that reverting to a placeholder (e.g. on a dev branch) fails
+    // safe by simply not rendering, rather than showing Cloudflare's
+    // visible "invalid sitekey" error box to a real visitor.
     if (TURNSTILE_SITE_KEY.indexOf('REPLACE_WITH') === 0) return;
     Array.prototype.forEach.call(document.querySelectorAll('.cf-turnstile'), function (container) {
       var form = container.closest('form');
