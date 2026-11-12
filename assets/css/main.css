@@ -438,20 +438,18 @@ body.page-wallpaper .section--cream {
 .hero__media video, .hero__media img {
   width: 100%; height: 100%; object-fit: cover;
 }
-/* Mobile art direction for the new hero tour video only (scoped to this one
+/* Mobile art direction for the hero tour video only (scoped to this one
    class so index-hero-b.html's separate hero2 video, and every other page's
    hero--short image, are unaffected). At a narrow portrait viewport,
    object-fit:cover on 16:9 footage keeps only the center ~26% of the frame's
-   width -- checked against 7 frames spanning the clip (gate, drive/bridge,
-   cabin, lodge, wide valley shot): dead-center crops the opening gate frame
-   so the "Stampede Ranch" sign is cut down to two letters, while a modest
-   left shift keeps that sign fully in frame and still reads well on every
-   other sampled frame (the valley shot at ~90s loses the distant windmill/
-   bridge at this position but keeps the lit lodge building, still a strong
-   frame). Desktop is left at the default center: its wider aspect crops far
-   less of the frame regardless of position, so there's nothing to fix there. */
+   width. 2026-11-11: moved from 35% back to dead center (50%) for the new
+   edit, whose rodeo opener and cutaways put a vertical clip in the middle of
+   the frame; at 35% that strip was pushed against the right edge of a phone,
+   clipping riders' shirts and hats. Known cost, accepted: for about 3s of the
+   flyover the entry-gate "Stampede Ranch" sign is cropped on phones. Desktop
+   uses the default center as before. */
 @media (max-width: 860px) {
-  .hero__media video.hero__video--tour { object-position: 35% 50%; }
+  .hero__media video.hero__video--tour { object-position: 50% 50%; }
 }
 /* The scrim earns its keep only where type sits: a pool across the bottom-left
    text block, and as little as possible over the landscape.
@@ -471,7 +469,18 @@ body.page-wallpaper .section--cream {
    in the 60% stop's .40 "window" left open for the old footage. Raised that
    one stop from .40 to .44 -- the minimal bump that clears 4.5:1 at every
    sampled frame (worst case after the fix: 4.63:1) without darkening the rest
-   of the gradient. Every other stop is unchanged from the 2026-08-26 tuning. */
+   of the gradient. Every other stop is unchanged from the 2026-08-26 tuning.
+   2026-11-11: re-measured for the new ~133s hero edit (15s rodeo opener plus
+   short cowboy cutaways intercut into the same drone tour). Sampled a frame
+   every 1s and every 3s across the whole clip, composited these gradients
+   (and the mobile override below) over each frame, and took the lightest
+   pixel behind each text line at 1728x1117, 1440x900, 430x932, 390x844 and
+   320x640. Desktop 1728 passes everywhere (worst: eyebrow 4.58:1 in the
+   cowboy shots, H1 4.35:1, subhead 7.94:1). The cowboy shots add no new
+   dips at any size: their worst values are at or above the flyover's own
+   worst values, which match the previous live video. Remaining sub-4.5
+   eyebrow points on mobile are the known bright-sky flyover stretch
+   (documented below). No scrim stops were changed. */
 .hero__scrim {
   position: absolute; inset: 0;
   background:
@@ -479,8 +488,8 @@ body.page-wallpaper .section--cream {
     linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
     radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
 }
-/* Mobile needs its own, slightly stronger pass: at the 35%-shifted mobile
-   focal point (see .hero__video--tour above), the same 24-27s bright-sky
+/* Mobile needs its own, slightly stronger pass: at the mobile focal point
+   (see .hero__video--tour above; 35% until 2026-11-11, now centred), the same 24-27s bright-sky
    stretch samples an even lighter pixel than it does at desktop's centered
    position. Scoped to .hero--tour only, so no other page's .hero__scrim is
    touched. Re-measured programmatically the same way: with these two stops

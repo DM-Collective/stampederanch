@@ -106,26 +106,29 @@
            viewports when the connection allows. Browsers ignore `media` on
            <source> inside <video>, so the resolution swap has to happen in JS.
            H.264 MP4, audio stripped (hero is a muted autoplay loop). -->
-      <!-- Official Stampede Ranch aerial drone footage (supplied 2026-09-18,
-           replacing the 2026-08 cut). A single continuous ~107s tour: entry
-           gate, drive and bridge, cabin cluster, main lodge cluster, then a
-           wide valley/mountain establishing shot. Encoded to 1280
-           (default/mobile) and 1920 (large viewports) cuts at crf 30/31;
-           poster is a frame from this same reel (the wide establishing shot
-           at ~30s). Keep the poster fallback, the reduced-motion handling
-           and the 1280/1920 source swap in assets/js/main.js.
-           Text contrast was re-measured against this new footage across 30
-           frames spanning the full clip (see the .hero__scrim comment below
-           for what changed and why -- one gradient stop, +.04). -->
+      <!-- Hero edit (2026-11-11 test build): ~133s, 3197 frames at 24000/1001,
+           no audio. Opens with 15s of cowboys and riders at the rodeo (from
+           stories-2.mp4), then the official Stampede Ranch aerial drone tour
+           (supplied 2026-09-18: entry gate, drive and bridge, cabin cluster,
+           main lodge cluster, wide valley/mountain shot) with 1-2s rodeo
+           cutaways (stories-2.mp4 and stories-3.mp4) intercut at the tour's
+           own cuts; the final valley shot runs uninterrupted. The vertical
+           clips sit sharp at full height in the centre over a mirrored,
+           blurred copy of themselves with feathered edges, so there are no
+           black bars. Encoded to 1280 (default/mobile, crf 31) and 1920 (large
+           viewports, crf 30) cuts; the poster is still a frame from the tour
+           (the wide establishing shot). Keep the poster fallback, the
+           reduced-motion handling and the 1280/1920 source swap in
+           assets/js/main.js. Text contrast was re-measured against this edit
+           at a frame every 3s (see the .hero__scrim comment in main.css). -->
       <video class="hero__video--tour" data-hero-video autoplay muted loop playsinline preload="metadata"
              poster="assets/video/hero-poster.jpg"
-             aria-label="Aerial drone tour of the Stampede Ranch property, from the entry gate through the grounds and buildings">
+             aria-label="Cowboys and riders at the Stampede Ranch rodeo, followed by an aerial drone tour of the property from the entry gate through the grounds and buildings">
         <source data-hero-source data-small="assets/video/hero-1280.mp4" data-large="assets/video/hero-1920.mp4"
                 src="assets/video/hero-1280.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero__scrim"></div>
-    <p class="hero__note">Aerial reel: official Stampede Ranch footage</p>
 
     <div class="hero__inner">
       <p class="eyebrow">Longview, Alberta · Cowboy Trail</p>
