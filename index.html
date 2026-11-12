@@ -106,20 +106,22 @@
            viewports when the connection allows. Browsers ignore `media` on
            <source> inside <video>, so the resolution swap has to happen in JS.
            H.264 MP4, audio stripped (hero is a muted autoplay loop). -->
-      <!-- Official Stampede Ranch aerial drone footage (supplied 2026-09-18,
-           replacing the 2026-08 cut). A single continuous ~107s tour: entry
-           gate, drive and bridge, cabin cluster, main lodge cluster, then a
-           wide valley/mountain establishing shot. Encoded to 1280
-           (default/mobile) and 1920 (large viewports) cuts at crf 30/31;
-           poster is a frame from this same reel (the wide establishing shot
-           at ~30s). Keep the poster fallback, the reduced-motion handling
-           and the 1280/1920 source swap in assets/js/main.js.
-           Text contrast was re-measured against this new footage across 30
-           frames spanning the full clip (see the .hero__scrim comment below
-           for what changed and why -- one gradient stop, +.04). -->
+      <!-- Hero edit, test build 2026-11-11 (~133s, no audio): opens on 15s of
+           riders on horseback crossing a wildflower meadow, then the official
+           Stampede Ranch aerial drone tour (supplied 2026-09-18) from the entry
+           gate through the grounds and buildings, with short 1-2s rider
+           cutaways placed at the tour's own cuts. The tour frames are stream
+           copied from the previous hero files, so they are bit-identical to
+           the previous cut; only the rider shots were encoded. Encoded to 1280
+           (default/mobile) and 1920 (large viewports) cuts; the poster is still
+           a frame from the tour (the wide establishing shot). Keep the poster
+           fallback, the reduced-motion handling and the 1280/1920 source swap
+           in assets/js/main.js. Text contrast was re-measured against this edit
+           after the homepage title was made smaller (see the .hero__scrim
+           comment in main.css). -->
       <video class="hero__video--tour" data-hero-video autoplay muted loop playsinline preload="metadata"
              poster="assets/video/hero-poster.jpg"
-             aria-label="Aerial drone tour of the Stampede Ranch property, from the entry gate through the grounds and buildings">
+             aria-label="Riders on horseback crossing a wildflower meadow, followed by an aerial drone tour of the Stampede Ranch property from the entry gate through the grounds and buildings">
         <source data-hero-source data-small="assets/video/hero-1280.mp4" data-large="assets/video/hero-1920.mp4"
                 src="assets/video/hero-1280.mp4" type="video/mp4">
       </video>
@@ -129,7 +131,7 @@
 
     <div class="hero__inner">
       <p class="eyebrow">Longview, Alberta · Cowboy Trail</p>
-      <h1 class="display">The Stampede<br>Ranch</h1>
+      <h1 class="display">The Stampede <br>Ranch</h1>
       <p class="hero__sub lead-italic" style="margin-bottom:1.5rem">Where untamed landscape meets refined Western hospitality. A private foothill sanctuary custom-crafted for timeless gatherings.</p>
       <div class="hero__actions">
         <a class="btn btn--gold" href="contact.html">Inquire for Private Events</a>

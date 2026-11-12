@@ -471,7 +471,18 @@ body.page-wallpaper .section--cream {
    in the 60% stop's .40 "window" left open for the old footage. Raised that
    one stop from .40 to .44 -- the minimal bump that clears 4.5:1 at every
    sampled frame (worst case after the fix: 4.63:1) without darkening the rest
-   of the gradient. Every other stop is unchanged from the 2026-08-26 tuning. */
+   of the gradient. Every other stop is unchanged from the 2026-08-26 tuning.
+   2026-11-11 (test build): new hero edit (riders opener, flyover with rider
+   cutaways, 133s) plus a smaller homepage title. Re-measured with Playwright
+   boxes after the title change, a frame every 3s plus 3 frames in each of
+   the 7 cutaways, lightest backdrop pixel behind each element. Desktop
+   1728x997 passes everywhere with no change here: eyebrow worst 5.20:1, h1
+   worst 6.67:1 (56px, large text), subhead worst 7.07:1. Phones after the
+   mobile fix below: at 390x844 the cowboy shots score 4.51:1 or better on the
+   eyebrow (h1 7.72:1, subhead 5.70:1); the only sub-4.5 eyebrow points are
+   bright-sky flyover frames (worst 3.63:1), the known accepted limitation.
+   430x932: cowboy 4.70:1 or better, flyover worst 3.85:1. These desktop
+   stops are unchanged. */
 .hero__scrim {
   position: absolute; inset: 0;
   background:
@@ -490,11 +501,18 @@ body.page-wallpaper .section--cream {
    darkening the footage there, which the brief for this video explicitly
    rules out -- so this is the deliberate stopping point, not an oversight.
    If that residual dip matters in practice, the real fix is upstream: trim
-   or re-grade that few seconds of source footage, not more scrim. */
+   or re-grade that few seconds of source footage, not more scrim.
+   2026-11-11 (test build, smaller homepage title): the smaller h1 moves the
+   eyebrow down from about 65% to about 50% of the hero height on phones, so
+   it now sits over the riders in the new cowboy shots. Measured at 390x844
+   and 430x932, a cowboy cutaway dropped from 7.76:1 to 3.42:1 on the eyebrow.
+   Minimal fix: the 38% stop went from .58 to .66 and the 60% stop from .48
+   to .60. Every other stop is unchanged. See the .hero__scrim note above for
+   the full numbers. */
 @media (max-width: 860px) {
   .hero--tour .hero__scrim {
     background:
-      linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.58) 38%, rgba(21,18,16,.48) 60%, rgba(21,18,16,.58) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
+      linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.66) 38%, rgba(21,18,16,.60) 60%, rgba(21,18,16,.58) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
       linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
       radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
   }
@@ -504,6 +522,14 @@ body.page-wallpaper .section--cream {
 /* gold-light, not gold: 11px type over moving footage needs the extra luminance */
 .hero__inner .eyebrow { color: var(--gold-light); }
 .hero h1 { color: var(--white); margin-bottom: .5rem; }
+/* Homepage hero title only (.hero--tour), test build 2026-11-11: an
+   understated title rather than a headline, so more of the video shows.
+   About 47% of the shared --fs-h1 size at desktop (56px vs 120px) and 28px
+   on phones. .display and --fs-h1 stay untouched for every other page.
+   The <br> is hidden so the title runs on one line on desktop and wraps
+   naturally on narrow screens (the markup has a space before the <br>). */
+.hero--tour h1.display { font-size: clamp(1.75rem, 0.9rem + 2.9vw, 3.5rem); }
+.hero--tour h1.display br { display: none; }
 .hero__sub { color: rgba(255,255,255,.9); margin: 1.25rem 0 2rem; max-width: 44ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .9rem; }
 
