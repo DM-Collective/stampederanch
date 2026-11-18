@@ -490,31 +490,48 @@ body.page-wallpaper .section--cream {
     linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
     radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
 }
-/* Mobile needs its own, slightly stronger pass: at the 35%-shifted mobile
-   focal point (see .hero__video--tour above), the same 24-27s bright-sky
-   stretch samples an even lighter pixel than it does at desktop's centered
-   position. Scoped to .hero--tour only, so no other page's .hero__scrim is
-   touched. Re-measured programmatically the same way: with these two stops
-   raised, only that one ~3s window remains under 4.5:1 (worst case ~3.4:1,
-   up from 3.01:1 unfixed). Getting that specific window the rest of the way
-   to 4.5:1 would need pushing these stops hard enough to read as heavily
-   darkening the footage there, which the brief for this video explicitly
-   rules out -- so this is the deliberate stopping point, not an oversight.
-   If that residual dip matters in practice, the real fix is upstream: trim
-   or re-grade that few seconds of source footage, not more scrim.
-   2026-11-11 (test build, smaller homepage title): the smaller h1 moves the
-   eyebrow down from about 65% to about 50% of the hero height on phones, so
-   it now sits over the riders in the new cowboy shots. Measured at 390x844
-   and 430x932, a cowboy cutaway dropped from 7.76:1 to 3.42:1 on the eyebrow.
-   Minimal fix: the 38% stop went from .58 to .66 and the 60% stop from .48
-   to .60. Every other stop is unchanged. See the .hero__scrim note above for
-   the full numbers. */
+/* Homepage hero (.hero--tour) only, test build 2026-11-18: client asked for
+   brighter, less muddy footage. The full-frame scrim above darkened the hero
+   by ~60% on average (even the open sky), so the homepage no longer uses it.
+   Soft, feathered radial pools sit only behind the type instead: one behind
+   the text block, a thin one under the small gold eyebrow, one under the
+   scroll cue, and on phones a faint one under the top-right pause button.
+   Average darkening: desktop 0.60 -> 0.29 (~47% of the frame untouched),
+   1024px 0.60 -> 0.37, phones 0.65 -> 0.56 (the text covers about half the
+   phone hero, so there is less to give back). Measured over 66 frames of the
+   hero video, lightest pixel behind each element, at 1728x997, 1440x900,
+   1024x768, 820x1180, 430x932, 390x844, 375x812 and 375x667: every text
+   element's worst case is at or above the old scrim's (desktop eyebrow worst
+   6.23:1, h1 6.47:1, subhead 6.24:1; 390x844 eyebrow worst 4.74:1, was
+   3.63:1). Other pages' heroes keep the shared .hero__scrim above. */
+.hero--tour .hero__scrim {
+  background:
+    radial-gradient(ellipse 30% 9% at 14% 61%, rgba(21,18,16,0.4) 0%, rgba(21,18,16,0.3) 50%, rgba(21,18,16,0) 100%),
+    radial-gradient(ellipse 22% 10% at 8% 98%, rgba(21,18,16,0.4) 0%, rgba(21,18,16,0.25) 50%, rgba(21,18,16,0) 100%),
+    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(21,18,16,0.72) 0%, rgba(21,18,16,0.7) 55%, rgba(21,18,16,0.4) 78%, rgba(21,18,16,0) 100%);
+}
 @media (max-width: 860px) {
   .hero--tour .hero__scrim {
     background:
-      linear-gradient(to top, rgba(21,18,16,.84) 0%, rgba(21,18,16,.66) 38%, rgba(21,18,16,.60) 60%, rgba(21,18,16,.58) 68%, rgba(21,18,16,.10) 78%, rgba(21,18,16,.03) 90%, rgba(21,18,16,.20) 100%),
-      linear-gradient(to right, rgba(21,18,16,.52) 0%, rgba(21,18,16,.26) 35%, rgba(21,18,16,.04) 62%, rgba(21,18,16,0) 100%),
-      radial-gradient(ellipse 46% 22% at 86% 0%, rgba(21,18,16,.62) 0%, rgba(21,18,16,0) 100%);
+      radial-gradient(ellipse 75% 16% at 85% 0%, rgba(21,18,16,0.36) 0%, rgba(21,18,16,0.22) 45%, rgba(21,18,16,0) 100%),
+      radial-gradient(ellipse 130% 52% at 30% 72%, rgba(21,18,16,0.8) 0%, rgba(21,18,16,0.78) 55%, rgba(21,18,16,0.42) 80%, rgba(21,18,16,0) 100%);
+  }
+}
+/* Small laptops / landscape tablets: the text block runs wider (to ~66%). */
+@media (min-width: 861px) and (max-width: 1199px) {
+  .hero--tour .hero__scrim {
+    background:
+      radial-gradient(ellipse 30% 9% at 14% 59%, rgba(21,18,16,0.4) 0%, rgba(21,18,16,0.3) 50%, rgba(21,18,16,0) 100%),
+      radial-gradient(ellipse 22% 10% at 8% 98%, rgba(21,18,16,0.4) 0%, rgba(21,18,16,0.25) 50%, rgba(21,18,16,0) 100%),
+      radial-gradient(ellipse 85% 52% at 22% 80%, rgba(21,18,16,0.76) 0%, rgba(21,18,16,0.74) 55%, rgba(21,18,16,0.42) 78%, rgba(21,18,16,0) 100%);
+  }
+}
+/* Short phones (iPhone SE, 375x667): the text block starts higher up. */
+@media (max-width: 860px) and (max-height: 700px) {
+  .hero--tour .hero__scrim {
+    background:
+      radial-gradient(ellipse 75% 16% at 85% 0%, rgba(21,18,16,0.36) 0%, rgba(21,18,16,0.22) 45%, rgba(21,18,16,0) 100%),
+      radial-gradient(ellipse 140% 60% at 30% 66%, rgba(21,18,16,0.74) 0%, rgba(21,18,16,0.7) 60%, rgba(21,18,16,0.35) 85%, rgba(21,18,16,0) 100%);
   }
 }
 
